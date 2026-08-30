@@ -1,0 +1,1109 @@
+{% extends "predictor/base.html" %}
+
+{% block title %}
+    {{ title }} | ChronicCare AI
+{% endblock %}
+
+
+{% block content %}
+
+<div class="min-h-screen bg-slate-50">
+
+    <!-- ================================================= -->
+    <!-- TOP PROGRESS BAR -->
+    <!-- ================================================= -->
+
+    <div class="border-b border-slate-200 bg-white">
+
+        <div class="mx-auto max-w-7xl px-5 py-4 lg:px-8">
+
+            <div class="flex items-center justify-between">
+
+                <div class="flex items-center gap-3">
+
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-lg">
+                        🧠
+                    </div>
+
+                    <div>
+
+                        <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+                            ChronicCare AI
+                        </p>
+
+                        <p class="text-sm font-bold text-slate-900">
+                            AI Health Assessment
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hidden items-center gap-3 sm:flex">
+
+                    <span class="text-xs font-bold text-slate-400">
+                        Assessment
+                    </span>
+
+                    <div class="h-1.5 w-20 overflow-hidden rounded-full bg-slate-100">
+
+                        <div class="h-full w-1/2 rounded-full bg-blue-600"></div>
+
+                    </div>
+
+                    <span class="text-xs font-bold text-blue-600">
+                        In progress
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- MAIN -->
+    <!-- ================================================= -->
+
+    <main class="mx-auto max-w-7xl px-5 py-8 lg:px-8 lg:py-12">
+
+
+        <!-- ================================================= -->
+        <!-- BREADCRUMB -->
+        <!-- ================================================= -->
+
+        <div class="mb-8 flex items-center gap-2 text-xs font-semibold text-slate-400">
+
+            <a
+                href="{% url 'home' %}"
+                class="transition hover:text-blue-600"
+            >
+                Home
+            </a>
+
+            <span>
+                /
+            </span>
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="transition hover:text-blue-600"
+            >
+                Assessments
+            </a>
+
+            <span>
+                /
+            </span>
+
+            <span class="text-slate-700">
+                {{ disease|title }}
+            </span>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- PAGE HEADER -->
+        <!-- ================================================= -->
+
+        <!-- ================================================= -->
+<!-- DISEASE HEADER -->
+<!-- ================================================= -->
+
+<div class="mb-10">
+
+    <!-- Disease identity -->
+
+    {% if disease == "heart_disease" %}
+
+        <div class="rounded-[2rem] border border-rose-200 bg-gradient-to-br from-rose-50 via-white to-white p-6 sm:p-8">
+
+            <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+
+                <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-rose-100 text-4xl shadow-sm">
+                    🫀
+                </div>
+
+                <div>
+
+                    <div class="inline-flex items-center gap-2 rounded-full bg-rose-100 px-3 py-1.5 text-xs font-black uppercase tracking-wider text-rose-700">
+
+                        <span class="h-1.5 w-1.5 rounded-full bg-rose-500"></span>
+
+                        Cardiovascular AI
+
+                    </div>
+
+                    <h1 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                        {{ title }}
+                    </h1>
+
+                    <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
+                        {{ description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    {% elif disease == "diabetes" %}
+
+        <div class="rounded-[2rem] border border-blue-200 bg-gradient-to-br from-blue-50 via-white to-white p-6 sm:p-8">
+
+            <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+
+                <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-blue-100 text-4xl shadow-sm">
+                    🩸
+                </div>
+
+                <div>
+
+                    <div class="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1.5 text-xs font-black uppercase tracking-wider text-blue-700">
+
+                        <span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+
+                        Metabolic AI
+
+                    </div>
+
+                    <h1 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                        {{ title }}
+                    </h1>
+
+                    <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
+                        {{ description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    {% elif disease == "kidney_disease" %}
+
+        <div class="rounded-[2rem] border border-cyan-200 bg-gradient-to-br from-cyan-50 via-white to-white p-6 sm:p-8">
+
+            <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+
+                <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-cyan-100 text-4xl shadow-sm">
+                    🧪
+                </div>
+
+                <div>
+
+                    <div class="inline-flex items-center gap-2 rounded-full bg-cyan-100 px-3 py-1.5 text-xs font-black uppercase tracking-wider text-cyan-700">
+
+                        <span class="h-1.5 w-1.5 rounded-full bg-cyan-500"></span>
+
+                        Renal AI
+
+                    </div>
+
+                    <h1 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                        {{ title }}
+                    </h1>
+
+                    <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
+                        {{ description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+   <!-- ================================================= -->
+<!-- SMART FEATURE GROUPS -->
+<!-- ================================================= -->
+
+{% if disease == "breast_cancer" %}
+
+    <!-- ============================================= -->
+    <!-- GROUP 01 -->
+    <!-- ============================================= -->
+
+    <div class="col-span-full">
+
+        <div class="mb-5 flex items-center gap-4">
+
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-pink-50 text-sm font-black text-pink-600">
+                01
+            </div>
+
+            <div>
+
+                <p class="text-[10px] font-black uppercase tracking-widest text-pink-600">
+                    Tumor measurements
+                </p>
+
+                <h3 class="mt-1 text-lg font-black text-slate-950">
+                    Primary Measurements
+                </h3>
+
+            </div>
+
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+
+            {% for field in fields|slice:":10" %}
+
+            <div class="group">
+
+                <label
+                    for="{{ field.name }}"
+                    class="mb-2 flex items-center justify-between"
+                >
+
+                    <span class="flex items-center gap-2">
+
+                        <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-slate-100 text-[10px] font-black text-slate-500">
+                            {{ forloop.counter }}
+                        </span>
+
+                        <span class="text-sm font-bold text-slate-700">
+                            {{ field.label }}
+                        </span>
+
+                    </span>
+
+                    <span class="text-[10px] font-black uppercase tracking-wider text-red-400">
+                        Required
+                    </span>
+
+                </label>
+
+
+                <input
+                    type="{{ field.type }}"
+                    id="{{ field.name }}"
+                    name="{{ field.name }}"
+                    {% if field.min %}min="{{ field.min }}"{% endif %}
+                    {% if field.max %}max="{{ field.max }}"{% endif %}
+                    {% if field.step %}step="{{ field.step }}"{% endif %}
+                    required
+                    autocomplete="off"
+                    class="field-input w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm font-medium text-slate-900 outline-none transition hover:border-pink-200 focus:border-pink-500 focus:bg-white focus:ring-4 focus:ring-pink-500/10"
+                    placeholder="Enter value"
+                >
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================================= -->
+    <!-- GROUP 02 -->
+    <!-- ============================================= -->
+
+    <div class="col-span-full border-t border-slate-100 pt-8">
+
+        <div class="mb-5 flex items-center gap-4">
+
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50 text-sm font-black text-purple-600">
+                02
+            </div>
+
+            <div>
+
+                <p class="text-[10px] font-black uppercase tracking-widest text-purple-600">
+                    Secondary analysis
+                </p>
+
+                <h3 class="mt-1 text-lg font-black text-slate-950">
+                    Detailed Measurements
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="grid gap-6 sm:grid-cols-2">
+
+            {% for field in fields|slice:"10:20" %}
+
+            <div class="group">
+
+                <label
+                    for="{{ field.name }}"
+                    class="mb-2 flex items-center justify-between"
+                >
+
+                    <span class="flex items-center gap-2">
+
+                        <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-slate-100 text-[10px] font-black text-slate-500">
+                            {{ forloop.counter|add:"10" }}
+                        </span>
+
+                        <span class="text-sm font-bold text-slate-700">
+                            {{ field.label }}
+                        </span>
+
+                    </span>
+
+                    <span class="text-[10px] font-black uppercase tracking-wider text-red-400">
+                        Required
+                    </span>
+
+                </label>
+
+
+                <input
+                    type="{{ field.type }}"
+                    id="{{ field.name }}"
+                    name="{{ field.name }}"
+                    {% if field.min %}min="{{ field.min }}"{% endif %}
+                    {% if field.max %}max="{{ field.max }}"{% endif %}
+                    {% if field.step %}step="{{ field.step }}"{% endif %}
+                    required
+                    autocomplete="off"
+                    class="field-input w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm font-medium text-slate-900 outline-none transition hover:border-purple-200 focus:border-purple-500 focus:bg-white focus:ring-4 focus:ring-purple-500/10"
+                    placeholder="Enter value"
+                >
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================================= -->
+    <!-- GROUP 03 -->
+    <!-- ============================================= -->
+
+    <div class="col-span-full border-t border-slate-100 pt-8">
+
+        <div class="mb-5 flex items-center gap-4">
+
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-sm font-black text-indigo-600">
+                03
+            </div>
+
+            <div>
+
+                <p class="text-[10px] font-black uppercase tracking-widest text-indigo-600">
+                    Advanced analysis
+                </p>
+
+                <h3 class="mt-1 text-lg font-black text-slate-950">
+                    Final Measurements
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="grid gap-6 sm:grid-cols-2">
+
+            {% for field in fields|slice:"20:" %}
+
+            <div class="group">
+
+                <label
+                    for="{{ field.name }}"
+                    class="mb-2 flex items-center justify-between"
+                >
+
+                    <span class="flex items-center gap-2">
+
+                        <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-slate-100 text-[10px] font-black text-slate-500">
+                            {{ forloop.counter|add:"20" }}
+                        </span>
+
+                        <span class="text-sm font-bold text-slate-700">
+                            {{ field.label }}
+                        </span>
+
+                    </span>
+
+                    <span class="text-[10px] font-black uppercase tracking-wider text-red-400">
+                        Required
+                    </span>
+
+                </label>
+
+
+                <input
+                    type="{{ field.type }}"
+                    id="{{ field.name }}"
+                    name="{{ field.name }}"
+                    {% if field.min %}min="{{ field.min }}"{% endif %}
+                    {% if field.max %}max="{{ field.max }}"{% endif %}
+                    {% if field.step %}step="{{ field.step }}"{% endif %}
+                    required
+                    autocomplete="off"
+                    class="field-input w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm font-medium text-slate-900 outline-none transition hover:border-indigo-200 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10"
+                    placeholder="Enter value"
+                >
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+{% else %}
+
+    <!-- ============================================= -->
+    <!-- STANDARD DISEASE FORM -->
+    <!-- ============================================= -->
+
+    {% for field in fields %}
+
+    <div class="group">
+
+        <label
+            for="{{ field.name }}"
+            class="mb-2 flex items-center justify-between"
+        >
+
+            <span class="flex items-center gap-2">
+
+                <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-slate-100 text-[10px] font-black text-slate-500">
+                    {{ forloop.counter }}
+                </span>
+
+                <span class="text-sm font-bold text-slate-700">
+                    {{ field.label }}
+                </span>
+
+            </span>
+
+            <span class="text-[10px] font-black uppercase tracking-wider text-red-400">
+                Required
+            </span>
+
+        </label>
+
+
+        {% if field.type == "select" %}
+
+        <div class="relative">
+
+            <select
+                id="{{ field.name }}"
+                name="{{ field.name }}"
+                required
+                class="field-input w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 pr-11 text-sm font-medium text-slate-900 outline-none transition hover:border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+            >
+
+                <option value="">
+                    Select an option
+                </option>
+
+                {% for value, label in field.options %}
+
+                <option value="{{ value }}">
+                    {{ label }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-xs text-slate-400">
+                ▼
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <input
+            type="{{ field.type }}"
+            id="{{ field.name }}"
+            name="{{ field.name }}"
+            {% if field.min %}min="{{ field.min }}"{% endif %}
+            {% if field.max %}max="{{ field.max }}"{% endif %}
+            {% if field.step %}step="{{ field.step }}"{% endif %}
+            required
+            autocomplete="off"
+            class="field-input w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm font-medium text-slate-900 outline-none transition hover:border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+            placeholder="Enter value"
+        >
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+{% endif %}
+
+
+<!-- ============================================= -->
+
+    {% elif disease == "liver_disease" %}
+
+        <div class="rounded-[2rem] border border-amber-200 bg-gradient-to-br from-amber-50 via-white to-white p-6 sm:p-8">
+
+            <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+
+                <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-amber-100 text-4xl shadow-sm">
+                    🧫
+                </div>
+
+                <div>
+
+                    <div class="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1.5 text-xs font-black uppercase tracking-wider text-amber-700">
+
+                        <span class="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
+
+                        Hepatic AI
+
+                    </div>
+
+                    <h1 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                        {{ title }}
+                    </h1>
+
+                    <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
+                        {{ description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+
+        <!-- ================================================= -->
+        <!-- ERROR -->
+        <!-- ================================================= -->
+
+        {% if error %}
+
+        <div class="mb-8 rounded-3xl border border-red-200 bg-red-50 p-5">
+
+            <div class="flex items-start gap-4">
+
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white font-black text-red-600 shadow-sm">
+                    !
+                </div>
+
+                <div>
+
+                    <h3 class="font-extrabold text-red-950">
+                        Assessment could not be completed
+                    </h3>
+
+                    <p class="mt-1 text-sm leading-6 text-red-700">
+                        {{ error }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ================================================= -->
+        <!-- FORM LAYOUT -->
+        <!-- ================================================= -->
+
+        <form
+            method="POST"
+            id="assessment-form"
+        >
+
+            {% csrf_token %}
+
+
+            <div class="grid gap-8 lg:grid-cols-[1fr_300px]">
+
+
+                <!-- ========================================= -->
+                <!-- INPUT CARD -->
+                <!-- ========================================= -->
+
+                <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-950/5">
+
+                    <!-- CARD HEADER -->
+
+                    <div class="border-b border-slate-100 px-6 py-6 sm:px-8">
+
+                        <div class="flex items-center gap-4">
+
+                            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-xl">
+                                🧬
+                            </div>
+
+                            <div>
+<h2 class="text-lg font-black text-slate-950">
+    Assessment Data
+</h2>
+
+                                <p class="mt-1 text-sm text-slate-400">
+                                   Enter the information required by the AI model
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- INPUTS -->
+
+                    <div class="grid gap-6 p-6 sm:grid-cols-2 sm:p-8">
+
+
+                        {% for field in fields %}
+                        <div class="hidden">
+    {{ forloop.counter }}
+</div>
+
+                        <div class="group">
+
+                            <label
+    for="{{ field.name }}"
+    class="mb-2 flex items-center justify-between"
+>
+
+    <span class="flex items-center gap-2">
+
+        <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-slate-100 text-[10px] font-black text-slate-500">
+            {{ forloop.counter }}
+        </span>
+
+        <span class="text-sm font-bold text-slate-700">
+            {{ field.label }}
+        </span>
+
+    </span>
+
+    <span class="text-[10px] font-black uppercase tracking-wider text-red-400">
+        Required
+    </span>
+
+</label>
+
+
+                            {% if field.type == "select" %}
+
+                            <div class="relative">
+
+                                <select
+                                    id="{{ field.name }}"
+                                    name="{{ field.name }}"
+                                    required
+                                    class="field-input w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 pr-11 text-sm font-medium text-slate-900 outline-none transition hover:border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                                >
+
+                                    <option value="">
+                                        Select an option
+                                    </option>
+
+                                    {% for value, label in field.options %}
+
+                                    <option value="{{ value }}">
+                                        {{ label }}
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+
+                                <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-xs text-slate-400">
+                                    ▼
+                                </div>
+
+                            </div>
+
+
+                            {% else %}
+
+                            <input
+                                type="{{ field.type }}"
+                                id="{{ field.name }}"
+                                name="{{ field.name }}"
+                                {% if field.placeholder %}
+                                placeholder="{{ field.placeholder }}"
+                                {% endif %}
+                                {% if field.min %}
+                                min="{{ field.min }}"
+                                {% endif %}
+                                {% if field.max %}
+                                max="{{ field.max }}"
+                                {% endif %}
+                                {% if field.step %}
+                                step="{{ field.step }}"
+                                {% endif %}
+                                required
+                                autocomplete="off"
+                                class="field-input w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm font-medium text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                                placeholder="Enter value"
+                            >
+
+                            {% endif %}
+
+
+                            <div class="mt-2 flex items-center gap-1.5 text-[11px] text-slate-400">
+
+                                <span>
+                                    ●
+                                </span>
+
+                                <span>
+                                    Required for this model
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+
+                    <div class="border-t border-slate-100 bg-slate-50 px-6 py-6 sm:px-8">
+
+                        <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
+
+                            <div>
+
+                                <p class="text-sm font-extrabold text-slate-900">
+                                    Ready to run the analysis?
+                                </p>
+
+                                <p class="mt-1 text-xs text-slate-400">
+                                    Review your entries before submitting.
+                                </p>
+
+                            </div>
+
+
+                            <button
+    type="submit"
+    id="submit-button"
+    class="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-slate-950 px-8 py-4 text-sm font-black text-white shadow-xl shadow-slate-950/10 transition duration-300 hover:-translate-y-1 hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+>
+
+    <span class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full"></span>
+
+    <span
+        id="submit-icon"
+        class="relative"
+    >
+        ✨
+    </span>
+
+    <span
+        id="submit-text"
+        class="relative"
+    >
+        Analyze with AI
+    </span>
+
+    <span class="relative text-lg transition-transform group-hover:translate-x-1">
+        →
+    </span>
+
+</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ========================================= -->
+                <!-- SIDE INFORMATION -->
+                <!-- ========================================= -->
+
+                <aside class="space-y-5">
+
+
+                    <!-- AI ENGINE -->
+
+                    <div class="rounded-[2rem] bg-slate-950 p-6 text-white shadow-xl">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10">
+                                🧠
+                            </div>
+
+                            <span class="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-emerald-300">
+                                Online
+                            </span>
+
+                        </div>
+
+
+                        <h3 class="mt-6 text-lg font-black">
+                            AI Analysis Engine
+                        </h3>
+
+
+                        <p class="mt-2 text-xs leading-5 text-slate-400">
+
+                            Your submitted information will be
+                            processed by the trained machine-learning
+                            pipeline for this assessment.
+
+                        </p>
+
+
+                        <div class="mt-6 space-y-3">
+
+                            <div class="flex items-center gap-3">
+
+                                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 text-xs">
+                                    01
+                                </span>
+
+                                <span class="text-xs font-semibold text-slate-300">
+                                    Validate inputs
+                                </span>
+
+                            </div>
+
+
+                            <div class="flex items-center gap-3">
+
+                                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 text-xs">
+                                    02
+                                </span>
+
+                                <span class="text-xs font-semibold text-slate-300">
+                                    Process features
+                                </span>
+
+                            </div>
+
+
+                            <div class="flex items-center gap-3">
+
+                                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 text-xs">
+                                    03
+                                </span>
+
+                                <span class="text-xs font-semibold text-slate-300">
+                                    Generate prediction
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRIVACY -->
+
+                    <div class="rounded-[2rem] border border-slate-200 bg-white p-6">
+
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                            🔒
+                        </div>
+
+                        <h3 class="mt-5 font-extrabold text-slate-900">
+                            Assessment privacy
+                        </h3>
+
+                        <p class="mt-2 text-xs leading-5 text-slate-400">
+
+                            This educational prototype uses the
+                            submitted information only to perform
+                            the current assessment.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- WARNING -->
+
+                    <div class="rounded-[2rem] border border-amber-200 bg-amber-50 p-6">
+
+                        <div class="flex items-center gap-3">
+
+                            <span class="text-xl">
+                                ⚠️
+                            </span>
+
+                            <h3 class="font-extrabold text-amber-950">
+                                Important
+                            </h3>
+
+                        </div>
+
+                        <p class="mt-3 text-xs leading-5 text-amber-800/80">
+
+                            This system is an educational AI project.
+                            Predictions are not medical diagnoses.
+
+                        </p>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </form>
+
+
+        <!-- ================================================= -->
+        <!-- BOTTOM INFORMATION -->
+        <!-- ================================================= -->
+
+        <div class="mt-10 rounded-3xl border border-slate-200 bg-white p-6">
+
+            <div class="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+
+                <div>
+
+                    <p class="text-sm font-extrabold text-slate-900">
+                        About this assessment
+                    </p>
+
+                    <p class="mt-1 max-w-2xl text-xs leading-5 text-slate-400">
+
+                        ChronicCare AI uses machine-learning models
+                        trained on structured datasets. Model outputs
+                        depend on the quality and characteristics of
+                        the training data.
+
+                    </p>
+
+                </div>
+
+
+                <div class="shrink-0 rounded-xl bg-slate-50 px-4 py-3">
+
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                        Model type
+                    </p>
+
+                    <p class="mt-1 text-xs font-bold text-slate-700">
+                        Classification
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+<script>
+
+    const form = document.getElementById("assessment-form");
+
+    const submitButton =
+        document.getElementById("submit-button");
+
+    const submitText =
+        document.getElementById("submit-text");
+
+    const submitIcon =
+        document.getElementById("submit-icon");
+
+    const fieldCount =
+        document.getElementById("field-count");
+
+    const fields =
+        form.querySelectorAll(".field-input");
+
+
+    function updateProgress() {
+
+        let completed = 0;
+
+        fields.forEach((field) => {
+
+            if (field.value.trim() !== "") {
+
+                completed++;
+
+            }
+
+        });
+
+        fieldCount.textContent =
+            `${completed} / ${fields.length}`;
+
+    }
+
+
+    fields.forEach((field) => {
+
+        field.addEventListener(
+            "input",
+            updateProgress
+        );
+
+        field.addEventListener(
+            "change",
+            updateProgress
+        );
+
+    });
+
+
+    form.addEventListener("submit", () => {
+
+        submitButton.disabled = true;
+
+        submitText.textContent =
+            "Analyzing...";
+
+        submitIcon.textContent =
+            "⏳";
+
+    });
+
+
+    updateProgress();
+
+</script>
+
+{% endblock %}

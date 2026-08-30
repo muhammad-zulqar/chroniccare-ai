@@ -1,0 +1,839 @@
+{% extends "predictor/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Dashboard | ChronicCare AI
+{% endblock %}
+
+
+{% block content %}
+
+<div class="min-h-screen bg-slate-50">
+
+    <!-- ================================================= -->
+    <!-- MOBILE TOP BAR -->
+    <!-- ================================================= -->
+
+    <div class="sticky top-[73px] z-40 border-b border-slate-200 bg-white/90 px-5 py-4 backdrop-blur-xl lg:hidden">
+
+        <div class="flex items-center justify-between">
+
+            <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-400">
+                    Dashboard
+                </p>
+
+                <h1 class="mt-1 text-lg font-black text-slate-950">
+                    ChronicCare AI
+                </h1>
+            </div>
+
+            <button
+                type="button"
+                class="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- DASHBOARD LAYOUT -->
+    <!-- ================================================= -->
+
+    <div class="mx-auto flex max-w-[1600px]">
+
+
+        <!-- ================================================= -->
+        <!-- SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="hidden min-h-[calc(100vh-73px)] w-64 shrink-0 border-r border-slate-200 bg-white lg:block">
+
+            <div class="sticky top-[73px] p-5">
+
+                <!-- Profile -->
+
+                <div class="mb-7 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 p-4">
+
+                    <div class="flex items-center gap-3">
+
+                       <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white font-black text-blue-600 shadow-sm">
+
+    {{ request.user.username|first|upper }}
+
+</div>
+
+                        <div class="min-w-0">
+
+                            <p class="truncate text-sm font-extrabold text-slate-950">
+    {{ request.user.username }}
+</p>
+
+<p class="truncate text-xs text-slate-500">
+    Personal Health Workspace
+</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Navigation -->
+
+                <p class="mb-3 px-3 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                    Workspace
+                </p>
+
+
+                <nav class="space-y-1">
+
+                    <a
+                        href="#"
+                        class="flex items-center gap-3 rounded-xl bg-slate-950 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-slate-950/10"
+                    >
+
+                        <span class="text-lg">⌂</span>
+
+                        Dashboard
+
+                    </a>
+
+
+                    <a
+                        href="#diseases"
+                        class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-blue-600"
+                    >
+
+                        <span class="text-lg">🧬</span>
+
+                        Assessments
+
+                    </a>
+
+
+                    <a
+    href="{% url 'history' %}"
+                        class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-blue-600"
+                    >
+
+                        <span class="text-lg">◷</span>
+
+                        History
+
+                    </a>
+
+
+                    <a
+                        href="{% url 'ai_lab' %}"
+                        class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-blue-600"
+                    >
+
+                        <span class="text-lg">✦</span>
+
+                        🧠 AI Model Lab
+
+                    </a>
+
+                    <a
+    href="{% url 'logout' %}"
+    class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-red-500 transition hover:bg-red-50 hover:text-red-600"
+>
+    <span class="text-lg">
+        ↪
+    </span>
+
+    Logout
+</a>
+
+<a
+    href="{% url 'delete_account' %}"
+    class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-red-500 transition hover:bg-red-50 hover:text-red-600"
+>
+    <span class="text-lg">
+        🗑
+    </span>
+
+    Delete Account
+</a>
+
+                </nav>
+
+
+                <!-- Bottom notice -->
+
+                <div class="mt-10 rounded-2xl border border-amber-200 bg-amber-50 p-4">
+
+                    <div class="flex gap-3">
+
+                        <span class="text-lg">
+                            ⚠️
+                        </span>
+
+                        <p class="text-xs leading-5 text-amber-800">
+                            This platform provides educational
+                            ML-based assessments, not medical diagnoses.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <main class="min-w-0 flex-1">
+
+            <div class="p-5 sm:p-8 lg:p-10">
+
+
+                <!-- ================================================= -->
+                <!-- HEADER -->
+                <!-- ================================================= -->
+
+                <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+
+                    <div>
+
+                        <p class="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+                            Overview
+                        </p>
+
+                       <h1 class="mt-2 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+    Welcome back,
+    <span class="text-blue-600">
+        {{ request.user.username }}
+    </span>
+    👋
+</h1>
+
+                      <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-500">
+    Your personal ChronicCare AI workspace for disease risk
+    assessments, results and health insights.
+</p>
+
+                    </div>
+
+
+                    <a
+                        href="#diseases"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-700"
+                    >
+                        <span>+</span>
+                        New Assessment
+                    </a>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STAT CARDS -->
+                <!-- ================================================= -->
+
+                <div class="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+
+                    <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                                🧠
+                            </div>
+
+                            <span class="text-xs font-bold text-emerald-600">
+                                Active
+                            </span>
+
+                        </div>
+
+                        <p class="mt-5 text-3xl font-black text-slate-950">
+                            05
+                        </p>
+
+                        <p class="mt-1 text-sm font-medium text-slate-500">
+                            ML disease models
+                        </p>
+
+                    </div>
+
+
+                    <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600">
+                                ⚡
+                            </div>
+
+                            <span class="text-xs font-bold text-blue-600">
+                                Ready
+                            </span>
+
+                        </div>
+
+                        <p class="mt-5 text-3xl font-black text-slate-950">
+                            AI
+                        </p>
+
+                        <p class="mt-1 text-sm font-medium text-slate-500">
+                            Prediction engine
+                        </p>
+
+                    </div>
+
+
+                    <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+                                📊
+                            </div>
+
+                            <span class="text-xs font-bold text-slate-400">
+                                Research
+                            </span>
+
+                        </div>
+
+                        <p class="mt-5 text-3xl font-black text-slate-950">
+                            ML
+                        </p>
+
+                        <p class="mt-1 text-sm font-medium text-slate-500">
+                            Classification pipeline
+                        </p>
+
+                    </div>
+
+
+                    <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                                ✓
+                            </div>
+
+                            <span class="text-xs font-bold text-emerald-600">
+                                Online
+                            </span>
+
+                        </div>
+
+                        <p class="mt-5 text-3xl font-black text-slate-950">
+                            Live
+                        </p>
+
+                        <p class="mt-1 text-sm font-medium text-slate-500">
+                            Assessment service
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- AI BANNER -->
+                <!-- ================================================= -->
+
+                <div class="relative mt-8 overflow-hidden rounded-[2rem] bg-slate-950 p-7 text-white shadow-xl sm:p-9">
+
+                    <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl"></div>
+
+                    <div class="absolute -bottom-24 left-1/3 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl"></div>
+
+
+                    <div class="relative flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
+
+                        <div class="max-w-2xl">
+
+                            <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-cyan-300">
+
+                                <span class="h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
+
+                                AI ENGINE ONLINE
+
+                            </div>
+
+
+                            <h2 class="text-2xl font-black tracking-tight sm:text-3xl">
+                                Explore your health through data.
+                            </h2>
+
+
+                            <p class="mt-3 text-sm leading-6 text-slate-400">
+                                Select one of our trained disease
+                                classification models to begin an
+                                educational risk assessment.
+                            </p>
+
+                        </div>
+
+
+                        <a
+                            href="#diseases"
+                            class="inline-flex shrink-0 items-center justify-center rounded-2xl bg-white px-6 py-3.5 text-sm font-extrabold text-slate-950 transition hover:-translate-y-1 hover:bg-cyan-50"
+                        >
+                            Explore Models →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- DISEASE ASSESSMENTS -->
+                <!-- ================================================= -->
+
+                <section id="diseases" class="mt-12">
+
+                    <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+
+                        <div>
+
+                            <p class="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+                                Assessment Library
+                            </p>
+
+                            <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950">
+                                Choose an AI model
+                            </h2>
+
+                        </div>
+
+
+                        <p class="text-sm text-slate-400">
+                            5 models available
+                        </p>
+
+                    </div>
+
+
+                    <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+
+
+                        <!-- HEART -->
+
+                        <a
+                            href="{% url 'disease_info' 'heart_disease' %}"
+                            class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-xl"
+                        >
+
+                            <div class="flex items-start justify-between">
+
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-50 text-xl">
+                                    🫀
+                                </div>
+
+                                <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-600">
+                                    READY
+                                </span>
+
+                            </div>
+
+                            <h3 class="mt-5 font-extrabold text-slate-950">
+                                Heart Disease
+                            </h3>
+
+                            <p class="mt-2 text-sm leading-6 text-slate-500">
+                                Cardiovascular health indicator classification.
+                            </p>
+
+                            <div class="mt-5 flex items-center justify-between">
+
+                                <span class="text-xs font-bold text-slate-400">
+                                    Classification
+                                </span>
+
+                                <span class="text-sm font-bold text-blue-600 transition group-hover:translate-x-1">
+                                    Assess →
+                                </span>
+
+                            </div>
+
+                        </a>
+
+
+                        <!-- DIABETES -->
+
+                        <a
+                            href="{% url 'disease_info' 'diabetes' %}"
+                            class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-xl"
+                        >
+
+                            <div class="flex items-start justify-between">
+
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-xl">
+                                    🩸
+                                </div>
+
+                                <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-600">
+                                    READY
+                                </span>
+
+                            </div>
+
+                            <h3 class="mt-5 font-extrabold text-slate-950">
+                                Diabetes
+                            </h3>
+
+                            <p class="mt-2 text-sm leading-6 text-slate-500">
+                                Diabetes-related indicator classification.
+                            </p>
+
+                            <div class="mt-5 flex items-center justify-between">
+
+                                <span class="text-xs font-bold text-slate-400">
+                                    Classification
+                                </span>
+
+                                <span class="text-sm font-bold text-blue-600 transition group-hover:translate-x-1">
+                                    Assess →
+                                </span>
+
+                            </div>
+
+                        </a>
+
+
+                        <!-- KIDNEY -->
+
+                        <a
+                            href="{% url 'disease_info' 'kidney_disease' %}"
+                            class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-xl"
+                        >
+
+                            <div class="flex items-start justify-between">
+
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-50 text-xl">
+                                    🧪
+                                </div>
+
+                                <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-600">
+                                    READY
+                                </span>
+
+                            </div>
+
+                            <h3 class="mt-5 font-extrabold text-slate-950">
+                                Kidney Disease
+                            </h3>
+
+                            <p class="mt-2 text-sm leading-6 text-slate-500">
+                                Chronic kidney disease indicator classification.
+                            </p>
+
+                            <div class="mt-5 flex items-center justify-between">
+
+                                <span class="text-xs font-bold text-slate-400">
+                                    Classification
+                                </span>
+
+                                <span class="text-sm font-bold text-blue-600 transition group-hover:translate-x-1">
+                                    Assess →
+                                </span>
+
+                            </div>
+
+                        </a>
+
+
+                        <!-- BREAST CANCER -->
+
+                        <a
+                            href="{% url 'disease_info' 'breast_cancer' %}"
+                            class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-xl"
+                        >
+
+                            <div class="flex items-start justify-between">
+
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-50 text-xl">
+                                    🎗️
+                                </div>
+
+                                <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-600">
+                                    READY
+                                </span>
+
+                            </div>
+
+                            <h3 class="mt-5 font-extrabold text-slate-950">
+                                Breast Cancer
+                            </h3>
+
+                            <p class="mt-2 text-sm leading-6 text-slate-500">
+                                Tumor measurement classification model.
+                            </p>
+
+                            <div class="mt-5 flex items-center justify-between">
+
+                                <span class="text-xs font-bold text-slate-400">
+                                    Classification
+                                </span>
+
+                                <span class="text-sm font-bold text-blue-600 transition group-hover:translate-x-1">
+                                    Assess →
+                                </span>
+
+                            </div>
+
+                        </a>
+
+
+                        <!-- LIVER -->
+
+                        <a
+                            href="{% url 'disease_info' 'liver_disease' %}"
+                            class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-xl"
+                        >
+
+                            <div class="flex items-start justify-between">
+
+                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-xl">
+                                    🧫
+                                </div>
+
+                                <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-600">
+                                    READY
+                                </span>
+
+                            </div>
+
+                            <h3 class="mt-5 font-extrabold text-slate-950">
+                                Liver Disease
+                            </h3>
+
+                            <p class="mt-2 text-sm leading-6 text-slate-500">
+                                Liver-related laboratory indicator classification.
+                            </p>
+
+                            <div class="mt-5 flex items-center justify-between">
+
+                                <span class="text-xs font-bold text-slate-400">
+                                    Classification
+                                </span>
+
+                                <span class="text-sm font-bold text-blue-600 transition group-hover:translate-x-1">
+                                    Assess →
+                                </span>
+
+                            </div>
+
+                        </a>
+
+
+                        <!-- FUTURE -->
+
+                        <div class="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-6">
+
+                            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl shadow-sm">
+                                ✨
+                            </div>
+
+                            <h3 class="mt-5 font-extrabold text-slate-700">
+                                More Models
+                            </h3>
+
+                            <p class="mt-2 text-sm leading-6 text-slate-400">
+                                The architecture is designed to support
+                                additional disease models.
+                            </p>
+
+                            <div class="mt-5 text-xs font-bold text-slate-400">
+                                EXPANDABLE ARCHITECTURE
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================================= -->
+                <!-- HOW AI WORKS -->
+                <!-- ================================================= -->
+
+                <section id="how-it-works" class="mt-14">
+
+                    <div class="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-9">
+
+                        <div class="max-w-2xl">
+
+                            <p class="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+                                Technology
+                            </p>
+
+                            <h2 class="mt-2 text-2xl font-black text-slate-950">
+                                How ChronicCare AI works
+                            </h2>
+
+                            <p class="mt-3 text-sm leading-6 text-slate-500">
+                                The platform combines Django with trained
+                                machine-learning pipelines to process
+                                structured health indicators.
+                            </p>
+
+                        </div>
+
+
+                        <div class="mt-8 grid gap-4 md:grid-cols-3">
+
+
+                            <div class="rounded-2xl bg-slate-50 p-5">
+
+                                <div class="text-xs font-black text-blue-600">
+                                    01
+                                </div>
+
+                                <h3 class="mt-5 font-bold text-slate-950">
+                                    User Input
+                                </h3>
+
+                                <p class="mt-2 text-xs leading-5 text-slate-500">
+                                    Health indicators are entered through
+                                    structured assessment forms.
+                                </p>
+
+                            </div>
+
+
+                            <div class="rounded-2xl bg-slate-50 p-5">
+
+                                <div class="text-xs font-black text-blue-600">
+                                    02
+                                </div>
+
+                                <h3 class="mt-5 font-bold text-slate-950">
+                                    ML Pipeline
+                                </h3>
+
+                                <p class="mt-2 text-xs leading-5 text-slate-500">
+                                    The trained preprocessing and
+                                    classification pipeline processes
+                                    the submitted data.
+                                </p>
+
+                            </div>
+
+
+                            <div class="rounded-2xl bg-slate-50 p-5">
+
+                                <div class="text-xs font-black text-blue-600">
+                                    03
+                                </div>
+
+                                <h3 class="mt-5 font-bold text-slate-950">
+                                    Assessment
+                                </h3>
+
+                                <p class="mt-2 text-xs leading-5 text-slate-500">
+                                    The system presents the model's
+                                    classification and probability.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================================= -->
+                <!-- ACTIVITY -->
+                <!-- ================================================= -->
+
+                <section id="activity" class="mt-8">
+
+                    <div class="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm">
+
+                        <div class="flex items-center justify-between">
+
+                            <div>
+
+                                <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+                                    Activity
+                                </p>
+
+                                <h2 class="mt-2 text-xl font-black text-slate-950">
+                                    Recent assessments
+                                </h2>
+
+                            </div>
+
+                            <span class="rounded-xl bg-slate-50 px-3 py-2 text-xs font-bold text-slate-400">
+                                Coming soon
+                            </span>
+
+                        </div>
+
+
+                        <div class="mt-7 flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-200 py-12 text-center">
+
+                            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-50 text-2xl">
+                                ◷
+                            </div>
+
+                            <h3 class="mt-4 font-bold text-slate-900">
+                                No assessment history yet
+                            </h3>
+
+                            <p class="mt-2 max-w-sm text-xs leading-5 text-slate-400">
+                                Completed assessments will appear here
+                                once history tracking is enabled.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================================= -->
+                <!-- FOOTER -->
+                <!-- ================================================= -->
+
+                <div class="mt-10 border-t border-slate-200 pt-7">
+
+                    <div class="flex flex-col justify-between gap-3 text-xs text-slate-400 sm:flex-row">
+
+                        <p>
+                            ChronicCare AI · ML Research Prototype
+                        </p>
+
+                        <p>
+                            Django · Python · Scikit-learn
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+{% endblock %}

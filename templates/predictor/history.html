@@ -1,0 +1,498 @@
+{% extends "predictor/base.html" %}
+
+{% block title %}
+    Assessment History | ChronicCare AI
+{% endblock %}
+
+
+{% block content %}
+
+<div class="min-h-screen bg-slate-50">
+
+    <!-- ================================================ -->
+    <!-- TOP HEADER -->
+    <!-- ================================================ -->
+
+    <div class="border-b border-slate-200 bg-white">
+
+        <div class="mx-auto max-w-7xl px-5 py-5 lg:px-8">
+
+            <div class="flex items-center justify-between">
+
+                <a
+                    href="{% url 'dashboard' %}"
+                    class="flex items-center gap-3"
+                >
+
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-lg">
+                        🧠
+                    </div>
+
+                    <div>
+
+                        <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+                            ChronicCare AI
+                        </p>
+
+                        <p class="text-sm font-bold text-slate-900">
+                            Assessment History
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="{% url 'dashboard' %}"
+                    class="hidden rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-600 transition hover:border-blue-200 hover:text-blue-600 sm:block"
+                >
+                    ← Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================ -->
+    <!-- MAIN -->
+    <!-- ================================================ -->
+
+    <main class="mx-auto max-w-7xl px-5 py-10 lg:px-8 lg:py-14">
+
+
+        <!-- ================================================ -->
+        <!-- PAGE INTRO -->
+        <!-- ================================================ -->
+
+        <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+
+            <div>
+
+                <div class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-black uppercase tracking-wider text-blue-700">
+
+                    <span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+
+                    Activity Center
+
+                </div>
+
+
+                <h1 class="mt-4 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+                    Assessment History
+                </h1>
+
+
+                <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-500">
+
+                    Review previous ChronicCare AI machine-learning
+                    assessments and their generated results.
+
+                </p>
+
+            </div>
+
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-6 py-3.5 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-700"
+            >
+                + New Assessment
+            </a>
+
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- STATISTICS -->
+        <!-- ================================================ -->
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+
+
+            <!-- TOTAL -->
+
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+
+                <div class="flex items-center justify-between">
+
+                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                        ◷
+                    </div>
+
+                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                        Total
+                    </span>
+
+                </div>
+
+                <p class="mt-6 text-3xl font-black text-slate-950">
+                   {{ total }}
+                </p>
+
+                <p class="mt-1 text-sm font-medium text-slate-500">
+                    Completed assessments
+                </p>
+
+            </div>
+
+
+            <!-- POSITIVE -->
+
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+
+                <div class="flex items-center justify-between">
+
+                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-rose-50 text-rose-600">
+                        !
+                    </div>
+
+                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                        Result
+                    </span>
+
+                </div>
+
+                <p class="mt-6 text-3xl font-black text-slate-950">
+                    {{ positive }}
+                </p>
+
+                <p class="mt-1 text-sm font-medium text-slate-500">
+                    Positive classifications
+                </p>
+
+            </div>
+
+
+            <!-- NEGATIVE -->
+
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+
+                <div class="flex items-center justify-between">
+
+                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                        ✓
+                    </div>
+
+                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                        Result
+                    </span>
+
+                </div>
+
+                <p class="mt-6 text-3xl font-black text-slate-950">
+                    {{ negative }}
+                </p>
+
+                <p class="mt-1 text-sm font-medium text-slate-500">
+                    Negative classifications
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- FILTER BAR -->
+        <!-- ================================================ -->
+
+        <div class="mt-8 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+
+            <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+
+                <div class="relative flex-1">
+
+                    <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                        ⌕
+                    </span>
+
+                    <input
+                        type="text"
+                        placeholder="Search assessments..."
+                        class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3.5 pl-11 pr-4 text-sm font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                    >
+
+                </div>
+
+
+                <select
+                    class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+                >
+
+                    <option>
+                        All diseases
+                    </option>
+
+                    <option>
+                        Heart Disease
+                    </option>
+
+                    <option>
+                        Diabetes
+                    </option>
+
+                    <option>
+                        Kidney Disease
+                    </option>
+
+                    <option>
+                        Breast Cancer
+                    </option>
+
+                    <option>
+                        Liver Disease
+                    </option>
+
+                </select>
+
+
+                <select
+                    class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+                >
+
+                    <option>
+                        Newest first
+                    </option>
+
+                    <option>
+                        Oldest first
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================ -->
+        <!-- HISTORY -->
+        <!-- ================================================ -->
+
+        <section class="mt-6 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+
+
+            <!-- TABLE HEADER -->
+
+            <div class="border-b border-slate-100 px-6 py-6 sm:px-8">
+
+                <div class="flex items-center justify-between">
+
+                    <div>
+
+                        <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+                            Records
+                        </p>
+
+                        <h2 class="mt-2 text-xl font-black text-slate-950">
+                            Previous assessments
+                        </h2>
+
+                    </div>
+
+
+                    <span class="rounded-full bg-slate-100 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-slate-500">
+                       {{ total }} Records
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ============================================ -->
+            <!-- EMPTY STATE -->
+            <!-- ============================================ -->
+
+{% if predictions %}
+
+    <div class="divide-y divide-slate-100">
+
+        {% for item in predictions %}
+
+        <div class="flex flex-col gap-5 p-6 transition hover:bg-slate-50 sm:flex-row sm:items-center sm:justify-between">
+
+            <div class="flex items-center gap-4">
+
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl
+                    {% if item.disease == 'heart_disease' %}
+                        bg-rose-50
+                    {% elif item.disease == 'diabetes' %}
+                        bg-blue-50
+                    {% elif item.disease == 'kidney_disease' %}
+                        bg-cyan-50
+                    {% elif item.disease == 'breast_cancer' %}
+                        bg-pink-50
+                    {% else %}
+                        bg-amber-50
+                    {% endif %}
+                    text-lg"
+                >
+
+                    {% if item.disease == "heart_disease" %}
+                        🫀
+                    {% elif item.disease == "diabetes" %}
+                        🩸
+                    {% elif item.disease == "kidney_disease" %}
+                        🧪
+                    {% elif item.disease == "breast_cancer" %}
+                        🎗️
+                    {% else %}
+                        🧫
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <h3 class="font-extrabold text-slate-950">
+                        {{ item.get_disease_display }}
+                    </h3>
+
+                    <p class="mt-1 text-xs text-slate-400">
+                        {{ item.created_at|date:"d M Y · h:i A" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="flex items-center gap-4 sm:justify-end">
+
+                <div class="text-right">
+
+                    <p class="text-sm font-black text-slate-950">
+                        {{ item.probability|floatformat:1 }}%
+                    </p>
+
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                        Model score
+                    </p>
+
+                </div>
+
+
+                {% if item.prediction == 1 %}
+
+                    <span class="rounded-full bg-rose-50 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-rose-700">
+                        Positive
+                    </span>
+
+                {% else %}
+
+                    <span class="rounded-full bg-emerald-50 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-emerald-700">
+                        Negative
+                    </span>
+
+                {% endif %}
+
+
+                <span class="hidden rounded-full bg-slate-100 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-slate-600 sm:inline-flex">
+                    {{ item.risk_level }}
+                </span>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <div class="px-6 py-20 text-center sm:px-8">
+
+        <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-[1.75rem] bg-slate-50 text-3xl">
+            ◷
+        </div>
+
+        <h3 class="mt-6 text-xl font-black text-slate-950">
+            No assessments yet
+        </h3>
+
+        <p class="mx-auto mt-3 max-w-md text-sm leading-6 text-slate-400">
+            Complete your first ChronicCare AI assessment
+            and the result will appear here automatically.
+        </p>
+
+        <a
+            href="{% url 'dashboard' %}"
+            class="mt-7 inline-flex items-center gap-2 rounded-2xl bg-slate-950 px-6 py-3.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-blue-700"
+        >
+            Start an Assessment
+            <span>→</span>
+        </a>
+
+    </div>
+
+{% endif %}
+
+
+        <!-- ================================================ -->
+        <!-- PRIVACY NOTICE -->
+        <!-- ================================================ -->
+
+        <section class="mt-8 rounded-[2rem] border border-blue-100 bg-blue-50 p-6 sm:p-7">
+
+            <div class="flex items-start gap-4">
+
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white shadow-sm">
+                    🔒
+                </div>
+
+
+                <div>
+
+                    <h3 class="font-black text-blue-950">
+                        Your assessment history
+                    </h3>
+
+
+                    <p class="mt-2 text-sm leading-6 text-blue-900/70">
+
+                        History storage will be connected to the
+                        application's database in a later development
+                        stage. This page currently represents the
+                        frontend interface.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================ -->
+        <!-- FOOTER -->
+        <!-- ================================================ -->
+
+        <footer class="mt-10 border-t border-slate-200 pt-7">
+
+            <div class="flex flex-col justify-between gap-3 text-xs text-slate-400 sm:flex-row">
+
+                <p>
+                    ChronicCare AI · Machine Learning Research Prototype
+                </p>
+
+                <p>
+                    Django · Python · Scikit-learn
+                </p>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,429 @@
+{% extends "predictor/base.html" %}
+
+{% block title %}
+    Disease Information | ChronicCare AI
+{% endblock %}
+
+{% block content %}
+
+<div class="min-h-screen bg-slate-50">
+
+    <!-- Hero -->
+    <section class="relative overflow-hidden border-b border-slate-200 bg-white">
+
+        <div class="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-blue-100/60 blur-3xl"></div>
+        <div class="absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-cyan-100/40 blur-3xl"></div>
+
+        <div class="relative mx-auto max-w-7xl px-5 py-12 sm:py-16 lg:px-8">
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="inline-flex items-center gap-2 text-sm font-bold text-slate-400 transition hover:text-blue-600"
+            >
+                ← Back to assessments
+            </a>
+
+            <div class="mt-10 grid gap-10 lg:grid-cols-[1fr_360px] lg:items-center">
+
+                <div>
+
+                    <div class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-black uppercase tracking-wider text-blue-700">
+
+                        <span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+
+                        AI Disease Assessment
+
+                    </div>
+
+                    <h1 class="mt-5 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+                        {{ disease|title }}
+                    </h1>
+
+                    <p class="mt-5 max-w-2xl text-base leading-7 text-slate-500">
+                        Explore the assessment, understand the type of
+                        information used by the machine-learning model,
+                        and begin when you're ready.
+                    </p>
+
+                    <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+
+                        <a
+                            href="{% url 'predict' disease %}"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-7 py-4 text-sm font-black text-white shadow-xl transition hover:-translate-y-1 hover:bg-blue-700"
+                        >
+                            Start Assessment
+                            <span>→</span>
+                        </a>
+
+                        <a
+                            href="{% url 'dashboard' %}"
+                            class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-7 py-4 text-sm font-black text-slate-700 transition hover:border-blue-200 hover:text-blue-600"
+                        >
+                            View Other Models
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AI CARD -->
+
+                <div class="rounded-[2rem] bg-slate-950 p-7 text-white shadow-2xl">
+
+                    <div class="flex items-center justify-between">
+
+                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-xl">
+                            🧠
+                        </div>
+
+                        <span class="rounded-full bg-emerald-400/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-emerald-300">
+                            Model Ready
+                        </span>
+
+                    </div>
+
+                    <h2 class="mt-7 text-xl font-black">
+                        AI Assessment Engine
+                    </h2>
+
+                    <p class="mt-3 text-sm leading-6 text-slate-400">
+                        ChronicCare AI processes structured features
+                        through a trained machine-learning classification
+                        pipeline.
+                    </p>
+
+                    <div class="mt-7 space-y-3">
+
+                        <div class="flex items-center gap-3">
+                            <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-xs font-bold">
+                                01
+                            </span>
+                            <span class="text-xs font-semibold text-slate-300">
+                                Collect inputs
+                            </span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-xs font-bold">
+                                02
+                            </span>
+                            <span class="text-xs font-semibold text-slate-300">
+                                Process features
+                            </span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-xs font-bold">
+                                03
+                            </span>
+                            <span class="text-xs font-semibold text-slate-300">
+                                Generate classification
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTENT -->
+
+    <main class="mx-auto max-w-7xl px-5 py-10 lg:px-8 lg:py-14">
+
+        <div class="grid gap-8 lg:grid-cols-[1fr_320px]">
+
+
+            <!-- MAIN COLUMN -->
+
+            <div class="space-y-8">
+
+
+                <!-- ABOUT -->
+
+                <section class="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-9">
+
+                    <p class="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+                        Overview
+                    </p>
+
+                    <h2 class="mt-3 text-2xl font-black text-slate-950">
+                        About this assessment
+                    </h2>
+
+                    <p class="mt-4 text-sm leading-7 text-slate-500">
+                        This module is designed as an educational
+                        demonstration of machine-learning classification.
+                        It uses structured features from the corresponding
+                        dataset and passes those features through the
+                        trained model.
+                    </p>
+
+                </section>
+
+
+                <!-- HOW IT WORKS -->
+
+                <section class="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-9">
+
+                    <p class="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+                        Workflow
+                    </p>
+
+                    <h2 class="mt-3 text-2xl font-black text-slate-950">
+                        How the assessment works
+                    </h2>
+
+
+                    <div class="mt-8 grid gap-4 md:grid-cols-3">
+
+                        <div class="rounded-2xl bg-slate-50 p-5">
+
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-black text-blue-600 shadow-sm">
+                                01
+                            </div>
+
+                            <h3 class="mt-5 font-extrabold text-slate-950">
+                                Enter data
+                            </h3>
+
+                            <p class="mt-2 text-xs leading-5 text-slate-500">
+                                Enter the values requested by the
+                                assessment form.
+                            </p>
+
+                        </div>
+
+
+                        <div class="rounded-2xl bg-slate-50 p-5">
+
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-black text-blue-600 shadow-sm">
+                                02
+                            </div>
+
+                            <h3 class="mt-5 font-extrabold text-slate-950">
+                                AI processing
+                            </h3>
+
+                            <p class="mt-2 text-xs leading-5 text-slate-500">
+                                Django sends the structured features
+                                to the trained ML pipeline.
+                            </p>
+
+                        </div>
+
+
+                        <div class="rounded-2xl bg-slate-50 p-5">
+
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-black text-blue-600 shadow-sm">
+                                03
+                            </div>
+
+                            <h3 class="mt-5 font-extrabold text-slate-950">
+                                View result
+                            </h3>
+
+                            <p class="mt-2 text-xs leading-5 text-slate-500">
+                                The application presents the model's
+                                classification and available score.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- DATA -->
+
+                <section class="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-9">
+
+                    <div class="flex items-start justify-between gap-5">
+
+                        <div>
+
+                            <p class="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+                                Model Inputs
+                            </p>
+
+                            <h2 class="mt-3 text-2xl font-black text-slate-950">
+                                Information used by the model
+                            </h2>
+
+                        </div>
+
+                        <div class="hidden rounded-xl bg-slate-50 px-4 py-3 text-center sm:block">
+
+                            <p class="text-2xl font-black text-slate-950">
+                                {{ fields|length }}
+                            </p>
+
+                            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                                Features
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-7 grid gap-3 sm:grid-cols-2">
+
+                        {% for field in fields %}
+
+                        <div class="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 p-4">
+
+                            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-xs font-black text-slate-500 shadow-sm">
+                                {{ forloop.counter }}
+                            </div>
+
+                            <div class="min-w-0">
+
+                                <p class="truncate text-sm font-bold text-slate-800">
+                                    {{ field.label }}
+                                </p>
+
+                                <p class="mt-0.5 text-[10px] font-medium text-slate-400">
+                                    {{ field.type|title }} input
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </section>
+
+
+                <!-- DISCLAIMER -->
+
+                <section class="rounded-[2rem] border border-amber-200 bg-amber-50 p-7 sm:p-9">
+
+                    <div class="flex items-start gap-4">
+
+                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white shadow-sm">
+                            ⚠️
+                        </div>
+
+                        <div>
+
+                            <h2 class="font-black text-amber-950">
+                                Educational use only
+                            </h2>
+
+                            <p class="mt-2 text-sm leading-6 text-amber-800/80">
+                                ChronicCare AI is a machine-learning
+                                academic project. Its predictions are not
+                                medical diagnoses and should not be used
+                                to make healthcare decisions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- SIDEBAR -->
+
+            <aside class="space-y-5">
+
+
+                <!-- QUICK START -->
+
+                <div class="sticky top-24 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+
+                    <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+                        Ready?
+                    </p>
+
+                    <h3 class="mt-3 text-xl font-black text-slate-950">
+                        Start your assessment
+                    </h3>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        Continue to the structured input form.
+                    </p>
+
+                    <a
+                        href="{% url 'predict' disease %}"
+                        class="mt-6 flex w-full items-center justify-center rounded-2xl bg-slate-950 px-5 py-4 text-sm font-black text-white transition hover:-translate-y-1 hover:bg-blue-700"
+                    >
+                        Begin Assessment →
+                    </a>
+
+                </div>
+
+
+                <!-- TECH STACK -->
+
+                <div class="rounded-[2rem] border border-slate-200 bg-white p-6">
+
+                    <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+                        Technology
+                    </p>
+
+                    <div class="mt-5 space-y-3">
+
+                        <div class="flex items-center justify-between">
+
+                            <span class="text-xs font-semibold text-slate-500">
+                                Backend
+                            </span>
+
+                            <span class="rounded-lg bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700">
+                                Django
+                            </span>
+
+                        </div>
+
+                        <div class="flex items-center justify-between">
+
+                            <span class="text-xs font-semibold text-slate-500">
+                                Language
+                            </span>
+
+                            <span class="rounded-lg bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700">
+                                Python
+                            </span>
+
+                        </div>
+
+                        <div class="flex items-center justify-between">
+
+                            <span class="text-xs font-semibold text-slate-500">
+                                AI
+                            </span>
+
+                            <span class="rounded-lg bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700">
+                                Scikit-learn
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</div>
+
+{% endblock %}

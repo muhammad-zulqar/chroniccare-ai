@@ -1,0 +1,761 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+            ChronicCare AI
+        {% endblock %}
+    </title>
+
+    <!-- ================================================= -->
+<!-- CHRONICCARE AI BRANDING -->
+<!-- ================================================= -->
+
+<link
+    rel="icon"
+    type="image/png"
+    href="{% static 'images/chroniccare-logo.png' %}"
+>
+
+<link
+    rel="apple-touch-icon"
+    href="{% static 'images/chroniccare-logo.png' %}"
+>
+    <!-- Tailwind CSS -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <!-- Tailwind configuration -->
+
+    <script>
+
+        tailwind.config = {
+
+            theme: {
+
+                extend: {
+
+                    fontFamily: {
+
+                        sans: [
+                            "Inter",
+                            "ui-sans-serif",
+                            "system-ui",
+                            "sans-serif"
+                        ],
+
+                    },
+
+                    boxShadow: {
+
+                        "soft":
+                            "0 10px 40px rgba(15, 23, 42, 0.06)",
+
+                    },
+
+                    animation: {
+
+                        "fade-in":
+                            "fadeIn 0.5s ease-out",
+
+                        "float":
+                            "float 4s ease-in-out infinite",
+
+                    },
+
+                    keyframes: {
+
+                        fadeIn: {
+
+                            "0%": {
+                                opacity: "0",
+                                transform: "translateY(8px)"
+                            },
+
+                            "100%": {
+                                opacity: "1",
+                                transform: "translateY(0)"
+                            }
+
+                        },
+
+                        float: {
+
+                            "0%, 100%": {
+                                transform: "translateY(0)"
+                            },
+
+                            "50%": {
+                                transform: "translateY(-8px)"
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+
+    <!-- Custom base styles -->
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f8fafc;
+        }
+
+        ::selection {
+            background: rgba(37, 99, 235, 0.18);
+        }
+
+        /* Hide scrollbar but keep scrolling */
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+    </style>
+
+
+    {% block extra_head %}
+    {% endblock %}
+
+</head>
+
+
+<body class="font-sans text-slate-900 antialiased">
+
+
+    <!-- ================================================= -->
+    <!-- NAVBAR -->
+    <!-- ================================================= -->
+
+    <header
+        class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl"
+    >
+
+        <nav class="mx-auto max-w-7xl px-5 lg:px-8">
+
+            <div class="flex h-[72px] items-center justify-between">
+
+
+                <!-- ================================================= -->
+                <!-- LOGO -->
+                <!-- ================================================= -->
+
+                <a
+                    href="{% url 'home' %}"
+                    class="group flex items-center gap-3"
+                >
+
+                    <div
+    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white p-1 shadow-sm ring-1 ring-slate-200"
+>
+    <img
+        src="{% static '/images/chroniccare-logo.png' %}"
+        alt="ChronicCare AI logo"
+        class="block h-full w-full object-contain"
+    >
+</div>
+
+
+                    <div class="hidden sm:block">
+
+                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600">
+                            AI Healthcare
+                        </p>
+
+                        <p class="text-base font-black tracking-tight text-slate-950">
+                            ChronicCare AI
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <!-- ================================================= -->
+                <!-- DESKTOP NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="hidden items-center gap-1 md:flex">
+
+
+                    <a
+                        href="{% url 'home' %}"
+                        class="rounded-xl px-4 py-2.5 text-sm font-bold text-slate-600 transition hover:bg-slate-50 hover:text-blue-600"
+                    >
+                        Home
+                    </a>
+
+
+                    <a
+                        href="{% url 'dashboard' %}"
+                        class="rounded-xl px-4 py-2.5 text-sm font-bold text-slate-600 transition hover:bg-slate-50 hover:text-blue-600"
+                    >
+                        Assessments
+                    </a>
+
+
+                    <a
+                        href="{% url 'history' %}"
+                        class="rounded-xl px-4 py-2.5 text-sm font-bold text-slate-600 transition hover:bg-slate-50 hover:text-blue-600"
+                    >
+                        History
+                    </a>
+
+
+                    <a
+                        href="{% url 'about' %}"
+                        class="rounded-xl px-4 py-2.5 text-sm font-bold text-slate-600 transition hover:bg-slate-50 hover:text-blue-600"
+                    >
+                        About AI
+                    </a>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- DESKTOP CTA -->
+                <!-- ================================================= -->
+
+                <div class="hidden md:block">
+
+                   {% if request.user.is_authenticated %}
+
+<div class="relative">
+
+    <details class="group">
+
+        <summary
+            class="flex cursor-pointer list-none items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2 transition hover:border-blue-200"
+        >
+
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 text-xs font-black text-white">
+                {{ request.user.username|first|upper }}
+            </div>
+
+            <div class="hidden text-left sm:block">
+
+                <p class="max-w-[110px] truncate text-xs font-black text-slate-900">
+                    {{ request.user.username }}
+                </p>
+
+                <p class="text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                    Account
+                </p>
+
+            </div>
+
+            <span class="text-xs text-slate-400">
+                ▼
+            </span>
+
+        </summary>
+
+
+        <div class="absolute right-0 top-full mt-2 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-xl">
+
+            <div class="border-b border-slate-100 px-3 py-3">
+
+                <p class="text-xs font-bold text-slate-400">
+                    Signed in as
+                </p>
+
+                <p class="mt-1 truncate text-sm font-black text-slate-900">
+                    {{ request.user.username }}
+                </p>
+
+            </div>
+
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="mt-1 flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-blue-600"
+            >
+                📊 Dashboard
+            </a>
+
+
+            <a
+                href="{% url 'history' %}"
+                class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-blue-600"
+            >
+                ◷ History
+            </a>
+
+
+            <a
+                href="{% url 'about' %}"
+                class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-blue-600"
+            >
+                ✦ About AI
+            </a>
+
+
+            <div class="my-1 border-t border-slate-100"></div>
+
+
+            <a
+                href="{% url 'logout' %}"
+                class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-red-500 hover:bg-red-50"
+            >
+                ↪ Logout
+            </a>
+
+        </div>
+
+    </details>
+
+</div>
+
+{% else %}
+
+<div class="flex items-center gap-2">
+
+    <a
+        href="{% url 'login' %}"
+        class="rounded-xl px-4 py-3 text-xs font-black text-slate-600 transition hover:bg-slate-50 hover:text-blue-600"
+    >
+        Sign In
+    </a>
+
+
+    <a
+        href="{% url 'signup' %}"
+        class="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-xs font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-700"
+    >
+
+        Create Account
+        <span>
+            →
+        </span>
+
+    </a>
+
+</div>
+
+{% endif %}
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- MOBILE MENU BUTTON -->
+                <!-- ================================================= -->
+
+                <button
+                    type="button"
+                    id="mobile-menu-button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    class="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition hover:border-blue-200 hover:text-blue-600 md:hidden"
+                >
+
+                    <span
+                        id="menu-open-icon"
+                        class="text-xl"
+                    >
+                        ☰
+                    </span>
+
+                    <span
+                        id="menu-close-icon"
+                        class="hidden text-xl"
+                    >
+                        ×
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- MOBILE MENU -->
+            <!-- ================================================= -->
+
+            <div
+                id="mobile-menu"
+                class="hidden border-t border-slate-100 py-4 md:hidden"
+            >
+
+                <div class="space-y-1">
+
+
+                    <a
+                        href="{% url 'home' %}"
+                        class="flex items-center gap-3 rounded-xl px-4 py-3.5 text-sm font-bold text-slate-700 hover:bg-slate-50"
+                    >
+
+                        <span>
+                            ⌂
+                        </span>
+
+                        Home
+
+                    </a>
+
+
+                   {% if request.user.is_authenticated %}
+
+<div class="pt-3">
+
+    <div class="mb-3 rounded-2xl bg-slate-50 p-4">
+
+        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">
+            Signed in as
+        </p>
+
+        <p class="mt-1 text-sm font-black text-slate-900">
+            {{ request.user.username }}
+        </p>
+
+    </div>
+
+
+    <a
+        href="{% url 'dashboard' %}"
+        class="flex w-full items-center justify-center rounded-xl bg-slate-950 px-5 py-3.5 text-sm font-black text-white"
+    >
+        📊 Dashboard
+    </a>
+<a
+    href="{% url 'delete_account' %}"
+    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-red-500 hover:bg-red-50"
+>
+    🗑 Delete Account
+</a>
+
+    <a
+        href="{% url 'logout' %}"
+        class="mt-2 flex w-full items-center justify-center rounded-xl bg-red-50 px-5 py-3.5 text-sm font-black text-red-600"
+    >
+        ↪ Logout
+    </a>
+
+</div>
+
+{% else %}
+
+<div class="space-y-2 pt-3">
+
+    <a
+        href="{% url 'login' %}"
+        class="flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3.5 text-sm font-black text-slate-700"
+    >
+        Sign In
+    </a>
+
+
+    <a
+        href="{% url 'signup' %}"
+        class="flex w-full items-center justify-center rounded-xl bg-slate-950 px-5 py-3.5 text-sm font-black text-white"
+    >
+        Create Account →
+    </a>
+
+</div>
+
+{% endif %}
+
+
+                    <a
+                        href="{% url 'history' %}"
+                        class="flex items-center gap-3 rounded-xl px-4 py-3.5 text-sm font-bold text-slate-700 hover:bg-slate-50"
+                    >
+
+                        <span>
+                            ◷
+                        </span>
+
+                        History
+
+                    </a>
+
+
+                    <a
+                        href="{% url 'about' %}"
+                        class="flex items-center gap-3 rounded-xl px-4 py-3.5 text-sm font-bold text-slate-700 hover:bg-slate-50"
+                    >
+
+                        <span>
+                            ✦
+                        </span>
+
+                        About AI
+
+                    </a>
+
+
+                    <div class="pt-3">
+
+                        <a
+                            href="{% url 'dashboard' %}"
+                            class="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3.5 text-sm font-black text-white"
+                        >
+
+                            ✦
+
+                            Start Assessment
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================================================= -->
+    <!-- PAGE CONTENT -->
+    <!-- ================================================= -->
+
+    <div class="animate-fade-in">
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- GLOBAL FOOTER -->
+    <!-- ================================================= -->
+
+    <footer class="border-t border-slate-200 bg-white">
+
+        <div class="mx-auto max-w-7xl px-5 py-10 lg:px-8">
+
+            <div class="grid gap-8 md:grid-cols-[1fr_auto_auto]">
+
+
+                <!-- BRAND -->
+
+                <div>
+
+                    <div class="flex items-center gap-3">
+
+                       <div class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
+
+    <img
+        src="{% static 'images/chroniccare-logo.png' %}"
+        alt="ChronicCare AI"
+        class="h-full w-full object-contain p-1"
+    >
+
+</div>
+
+                        <div>
+
+                            <p class="font-black text-slate-950">
+                                ChronicCare AI
+                            </p>
+
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-blue-600">
+                                AI Healthcare Research
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="mt-4 max-w-md text-xs leading-6 text-slate-400">
+
+                        An academic machine-learning project
+                        demonstrating disease classification through
+                        a Django web application.
+
+                    </p>
+
+                </div>
+
+
+                <!-- NAVIGATION -->
+
+                <div>
+
+                    <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+                        Platform
+                    </p>
+
+                    <div class="mt-4 space-y-2">
+
+                        <a
+                            href="{% url 'dashboard' %}"
+                            class="block text-xs font-semibold text-slate-500 hover:text-blue-600"
+                        >
+                            Assessments
+                        </a>
+
+                        <a
+                            href="{% url 'history' %}"
+                            class="block text-xs font-semibold text-slate-500 hover:text-blue-600"
+                        >
+                            History
+                        </a>
+
+                        <a
+                            href="{% url 'about' %}"
+                            class="block text-xs font-semibold text-slate-500 hover:text-blue-600"
+                        >
+                            About AI
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TECHNOLOGY -->
+
+                <div>
+
+                    <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+                        Technology
+                    </p>
+
+                    <div class="mt-4 space-y-2">
+
+                        <p class="text-xs font-semibold text-slate-500">
+                            Python
+                        </p>
+
+                        <p class="text-xs font-semibold text-slate-500">
+                            Django
+                        </p>
+
+                        <p class="text-xs font-semibold text-slate-500">
+                            Scikit-learn
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="mt-8 flex flex-col justify-between gap-3 border-t border-slate-100 pt-6 sm:flex-row">
+
+                <p class="text-[11px] text-slate-400">
+                    © 2026 ChronicCare AI
+                </p>
+
+                <p class="text-[11px] font-medium text-slate-400">
+                    Educational / Research Prototype
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================================================= -->
+    <!-- MOBILE MENU SCRIPT -->
+    <!-- ================================================= -->
+
+    <script>
+
+        const mobileMenuButton =
+            document.getElementById("mobile-menu-button");
+
+        const mobileMenu =
+            document.getElementById("mobile-menu");
+
+        const openIcon =
+            document.getElementById("menu-open-icon");
+
+        const closeIcon =
+            document.getElementById("menu-close-icon");
+
+
+        if (mobileMenuButton) {
+
+            mobileMenuButton.addEventListener(
+                "click",
+                () => {
+
+                    const isOpen =
+                        !mobileMenu.classList.contains("hidden");
+
+
+                    if (isOpen) {
+
+                        mobileMenu.classList.add("hidden");
+
+                        openIcon.classList.remove("hidden");
+
+                        closeIcon.classList.add("hidden");
+
+                        mobileMenuButton.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    } else {
+
+                        mobileMenu.classList.remove("hidden");
+
+                        openIcon.classList.add("hidden");
+
+                        closeIcon.classList.remove("hidden");
+
+                        mobileMenuButton.setAttribute(
+                            "aria-expanded",
+                            "true"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+    {% block extra_scripts %}
+    {% endblock %}
+
+</body>
+
+</html>
