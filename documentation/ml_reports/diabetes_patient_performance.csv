@@ -1,0 +1,2 @@
+Disease,Mode,Model,Accuracy,Precision,Recall,F1 Score,Features,Training Samples,Testing Samples
+diabetes,patient,Random Forest,0.9711538461538461,0.9841269841269841,0.96875,0.9763779527559056,9,416,104

@@ -1,0 +1,2 @@
+Disease,Mode,Model,Accuracy,Precision,Recall,F1 Score,Features,Training Samples,Testing Samples
+heart_disease,patient,Logistic Regression,0.8688524590163934,0.8571428571428571,0.8571428571428571,0.8571428571428571,9,242,61

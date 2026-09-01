@@ -1,0 +1,2 @@
+Disease,Mode,Model,Accuracy,Precision,Recall,F1 Score,Features,Training Samples,Testing Samples
+kidney_disease,patient,Random Forest,0.975,0.98,0.98,0.98,10,320,80

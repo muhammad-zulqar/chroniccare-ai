@@ -1,10 +1,17 @@
 from django.shortcuts import render
 from .models import Prediction
-from .ml_predictor import predict_disease
+from .ml_predictor import (
+    predict_disease,
+    predict_patient_diabetes,
+    predict_patient_heart,
+    predict_patient_kidney,
+    predict_patient_liver,
+)
 from .forms_config import DISEASE_FORMS
 from django.contrib.auth.decorators import login_required
 import pandas as pd
 from pathlib import Path
+from .screening import screen_breast_health
 
 
 def home(request):
@@ -173,22 +180,37 @@ def predict(request, disease):
 
                 data[field_name] = value
 
-            result, probability = predict_disease(
-                disease,
-                data
-            )
+            if disease == "diabetes":
+                result, probability = predict_patient_diabetes(data)
+            elif disease == "heart_disease":
+                result, probability = predict_patient_heart(data)
+            elif disease == "kidney_disease":
+                result, probability = predict_patient_kidney(data)
+            elif disease == "liver_disease":
+                result, probability = predict_patient_liver(data)
+            elif disease == "breast_cancer":
+                screening = screen_breast_health(data)
+                return render(
+                    request,
+                    "predictor/breast_screening_result.html",
+                    {
+                        "screening": screening,
+                        "disease": disease,
+                        "title": form_config["title"],
+                    }
+                )
+            else:
+                result, probability = predict_disease(disease, data)
 
-            risk_level = get_risk_level(
-                probability
-            )
+            risk_level = get_risk_level(probability)
 
             Prediction.objects.create(
-    user=request.user if request.user.is_authenticated else None,
-    disease=disease,
-    risk_level=risk_level,
-    probability=probability if probability is not None else 0,
-    prediction=int(result),
-)
+                user=request.user if request.user.is_authenticated else None,
+                disease=disease,
+                risk_level=risk_level,
+                probability=probability if probability is not None else 0,
+                prediction=int(result),
+            )
 
             return render(
                 request,

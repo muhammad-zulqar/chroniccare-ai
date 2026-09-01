@@ -2,145 +2,136 @@ DISEASE_FORMS = {
 
     "heart_disease": {
 
-        "title": "Heart Disease Risk Assessment",
+    "title": "Heart Health Assessment",
 
-        "description": "Provide the cardiovascular measurements required by our trained model.",
+    "description": (
+        "Answer a few simple questions and provide basic "
+        "health information for an AI-based heart health assessment."
+    ),
 
-        "fields": [
+    "fields": [
 
-            {
-                "name": "age",
-                "label": "Age",
-                "type": "number",
-                "placeholder": "e.g. 45",
-                "min": "1",
-                "max": "120",
-            },
+        {
+            "name": "age",
+            "label": "What is your age?",
+            "type": "number",
+            "placeholder": "Enter your age",
+            "min": "1",
+            "max": "120",
+            "help": "Enter your current age.",
+        },
 
-            {
-                "name": "sex",
-                "label": "Sex",
-                "type": "select",
-                "options": [
-                    ("1", "Male"),
-                    ("0", "Female"),
-                ],
-            },
+        {
+            "name": "sex",
+            "label": "What is your sex?",
+            "type": "select",
+            "options": [
+                ("1", "Male"),
+                ("0", "Female"),
+            ],
+            "help": "Select the option that applies to you.",
+        },
 
-            {
-                "name": "cp",
-                "label": "Chest Pain Type",
-                "type": "select",
-                "options": [
-                    ("0", "Typical angina"),
-                    ("1", "Atypical angina"),
-                    ("2", "Non-anginal pain"),
-                    ("3", "Asymptomatic"),
-                ],
-            },
+        {
+            "name": "cp",
+            "label": "What type of chest discomfort do you usually experience?",
+            "type": "select",
+            "options": [
+                ("0", "Typical chest pain"),
+                ("1", "Atypical chest pain"),
+                ("2", "Non-anginal discomfort"),
+                ("3", "No chest pain"),
+            ],
+            "help": (
+                "Choose the option that best describes "
+                "your usual chest discomfort."
+            ),
+        },
 
-            {
-                "name": "trestbps",
-                "label": "Resting Blood Pressure",
-                "type": "number",
-                "placeholder": "e.g. 120",
-                "min": "50",
-                "max": "250",
-            },
+        {
+            "name": "trestbps",
+            "label": "What is your resting blood pressure?",
+            "type": "number",
+            "placeholder": "e.g. 120",
+            "min": "50",
+            "max": "250",
+            "help": (
+                "Enter your resting blood-pressure reading "
+                "from a recent health check."
+            ),
+        },
 
-            {
-                "name": "chol",
-                "label": "Serum Cholesterol",
-                "type": "number",
-                "placeholder": "e.g. 200",
-                "min": "50",
-                "max": "700",
-            },
+        {
+            "name": "chol",
+            "label": "What is your cholesterol level?",
+            "type": "number",
+            "placeholder": "From your blood-test report",
+            "min": "50",
+            "max": "700",
+            "help": (
+                "Enter the cholesterol value from your "
+                "recent blood-test report."
+            ),
+        },
 
-            {
-                "name": "fbs",
-                "label": "Fasting Blood Sugar > 120 mg/dl",
-                "type": "select",
-                "options": [
-                    ("1", "Yes"),
-                    ("0", "No"),
-                ],
-            },
+        {
+            "name": "fbs",
+            "label": "Has a blood test shown that your fasting blood sugar is high?",
+            "type": "select",
+            "options": [
+                ("1", "Yes"),
+                ("0", "No"),
+            ],
+            "help": (
+                "Choose Yes if you have been told that "
+                "your fasting blood sugar is above the normal range."
+            ),
+        },
 
-            {
-                "name": "restecg",
-                "label": "Resting ECG",
-                "type": "select",
-                "options": [
-                    ("0", "Normal"),
-                    ("1", "ST-T wave abnormality"),
-                    ("2", "Left ventricular hypertrophy"),
-                ],
-            },
+        {
+            "name": "restecg",
+            "label": "What did your resting ECG report show?",
+            "type": "select",
+            "options": [
+                ("0", "Normal"),
+                ("1", "ST-T wave abnormality"),
+                ("2", "Left ventricular hypertrophy"),
+            ],
+            "help": (
+                "Use the result from your ECG report. "
+                "Choose Normal if your report says normal."
+            ),
+        },
 
-            {
-                "name": "thalach",
-                "label": "Maximum Heart Rate",
-                "type": "number",
-                "placeholder": "e.g. 150",
-                "min": "50",
-                "max": "250",
-            },
+        {
+            "name": "thalach",
+            "label": "What was your highest heart rate during your test?",
+            "type": "number",
+            "placeholder": "e.g. 150",
+            "min": "50",
+            "max": "250",
+            "help": (
+                "Enter the highest heart-rate value recorded "
+                "during your health examination or exercise test."
+            ),
+        },
 
-            {
-                "name": "exang",
-                "label": "Exercise-Induced Angina",
-                "type": "select",
-                "options": [
-                    ("1", "Yes"),
-                    ("0", "No"),
-                ],
-            },
+        {
+            "name": "exang",
+            "label": "Did exercise cause chest discomfort during your test?",
+            "type": "select",
+            "options": [
+                ("1", "Yes"),
+                ("0", "No"),
+            ],
+            "help": (
+                "Choose Yes if physical activity or exercise "
+                "caused chest discomfort during the test."
+            ),
+        },
 
-            {
-                "name": "oldpeak",
-                "label": "ST Depression",
-                "type": "number",
-                "placeholder": "e.g. 1.0",
-                "step": "0.1",
-            },
-
-            {
-                "name": "slope",
-                "label": "ST Segment Slope",
-                "type": "select",
-                "options": [
-                    ("0", "Upsloping"),
-                    ("1", "Flat"),
-                    ("2", "Downsloping"),
-                ],
-            },
-
-            {
-                "name": "ca",
-                "label": "Major Vessels",
-                "type": "select",
-                "options": [
-                    ("0", "0"),
-                    ("1", "1"),
-                    ("2", "2"),
-                    ("3", "3"),
-                ],
-            },
-
-            {
-                "name": "thal",
-                "label": "Thalassemia",
-                "type": "select",
-                "options": [
-                    ("0", "Normal"),
-                    ("1", "Fixed defect"),
-                    ("2", "Reversible defect"),
-                ],
-            },
-        ],
-    },
-
+    ],
+},
 
     # ========================================================
     # DIABETES
@@ -154,164 +145,103 @@ DISEASE_FORMS = {
 
         "fields": [
 
-            {
-                "name": "age",
-                "label": "Age",
-                "type": "number",
-                "placeholder": "e.g. 35",
-                "min": "1",
-                "max": "120",
-            },
+    {
+        "name": "age",
+        "label": "What is your age?",
+        "type": "number",
+        "placeholder": "Enter your age",
+        "min": "1",
+        "max": "120",
+        "help": "Enter your current age.",
+    },
 
-            {
-                "name": "gender",
-                "label": "Gender",
-                "type": "select",
-                "options": [
-                    ("Male", "Male"),
-                    ("Female", "Female"),
-                ],
-            },
+    {
+        "name": "gender",
+        "label": "What is your gender?",
+        "type": "select",
+        "options": [
+            ("Male", "Male"),
+            ("Female", "Female"),
+        ],
+        "help": "Select the option that applies to you.",
+    },
 
-            {
-                "name": "polyuria",
-                "label": "Frequent Urination",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
+    {
+        "name": "polyuria",
+        "label": "Do you urinate more often than usual?",
+        "type": "select",
+        "options": [
+            ("Yes", "Yes"),
+            ("No", "No"),
+        ],
+        "help": "Choose Yes if you have noticed unusually frequent urination.",
+    },
 
-            {
-                "name": "polydipsia",
-                "label": "Excessive Thirst",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
+    {
+        "name": "polydipsia",
+        "label": "Do you often feel unusually thirsty?",
+        "type": "select",
+        "options": [
+            ("Yes", "Yes"),
+            ("No", "No"),
+        ],
+        "help": "Choose Yes if you experience excessive thirst.",
+    },
 
-            {
-                "name": "sudden_weight_loss",
-                "label": "Sudden Weight Loss",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
+    {
+        "name": "sudden_weight_loss",
+        "label": "Have you experienced unexplained weight loss?",
+        "type": "select",
+        "options": [
+            ("Yes", "Yes"),
+            ("No", "No"),
+        ],
+        "help": "Choose Yes if you have lost weight without intentionally trying.",
+    },
 
-            {
-                "name": "weakness",
-                "label": "Weakness",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
+    {
+        "name": "weakness",
+        "label": "Do you often feel unusually weak or tired?",
+        "type": "select",
+        "options": [
+            ("Yes", "Yes"),
+            ("No", "No"),
+        ],
+        "help": "Choose Yes if you frequently experience unusual weakness.",
+    },
 
-            {
-                "name": "polyphagia",
-                "label": "Excessive Hunger",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
+    {
+        "name": "polyphagia",
+        "label": "Do you feel unusually hungry more often?",
+        "type": "select",
+        "options": [
+            ("Yes", "Yes"),
+            ("No", "No"),
+        ],
+        "help": "Choose Yes if you have noticed increased hunger.",
+    },
 
-            {
-                "name": "genital_thrush",
-                "label": "Genital Thrush",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
+    {
+        "name": "visual_blurring",
+        "label": "Do you experience blurred vision?",
+        "type": "select",
+        "options": [
+            ("Yes", "Yes"),
+            ("No", "No"),
+        ],
+        "help": "Choose Yes if your vision sometimes appears unusually blurred.",
+    },
 
-            {
-                "name": "visual_blurring",
-                "label": "Visual Blurring",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
-
-            {
-                "name": "itching",
-                "label": "Itching",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
-
-            {
-                "name": "irritability",
-                "label": "Irritability",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
-
-            {
-                "name": "delayed_healing",
-                "label": "Delayed Healing",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
-
-            {
-                "name": "partial_paresis",
-                "label": "Partial Paresis",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
-
-            {
-                "name": "muscle_stiffness",
-                "label": "Muscle Stiffness",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
-
-            {
-                "name": "alopecia",
-                "label": "Hair Loss",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
-
-            {
-                "name": "obesity",
-                "label": "Obesity",
-                "type": "select",
-                "options": [
-                    ("Yes", "Yes"),
-                    ("No", "No"),
-                ],
-            },
+    {
+        "name": "obesity",
+        "label": "Do you consider yourself significantly overweight?",
+        "type": "select",
+        "options": [
+            ("Yes", "Yes"),
+            ("No", "No"),
+        ],
+        "help": "Use your usual health assessment or clinician guidance when answering.",
+    },
         ],
     },
 
@@ -319,215 +249,140 @@ DISEASE_FORMS = {
     # ========================================================
     # KIDNEY
     # ========================================================
+"kidney_disease": {
 
-    "kidney_disease": {
+    "title": "Kidney Health Assessment",
 
-        "title": "Chronic Kidney Disease Risk Assessment",
+    "description": (
+        "Answer a few simple health questions and, where available, "
+        "enter values from your recent blood or medical report."
+    ),
 
-        "description": "Provide the measurements required by the kidney disease model.",
+    "fields": [
 
-        "fields": [
+        {
+            "name": "age",
+            "label": "What is your age?",
+            "type": "number",
+            "placeholder": "Enter your age",
+            "min": "1",
+            "max": "120",
+            "help": "Enter your current age.",
+        },
 
-            {
-                "name": "age",
-                "label": "Age",
-                "type": "number",
-                "min": "1",
-                "max": "120",
-            },
+        {
+            "name": "bp",
+            "label": "What is your blood pressure reading?",
+            "type": "number",
+            "placeholder": "e.g. 80",
+            "help": (
+                "Enter the blood-pressure value recorded during "
+                "your recent health check."
+            ),
+        },
 
-            {
-                "name": "bp",
-                "label": "Blood Pressure",
-                "type": "number",
-                "placeholder": "e.g. 80",
-            },
+        {
+            "name": "bgr",
+            "label": "What is your blood glucose level?",
+            "type": "number",
+            "placeholder": "From your blood-test report",
+            "help": (
+                "Enter the blood glucose value shown on your "
+                "recent laboratory report."
+            ),
+        },
 
-            {
-                "name": "sg",
-                "label": "Specific Gravity",
-                "type": "number",
-                "step": "0.001",
-                "placeholder": "e.g. 1.020",
-            },
+        {
+            "name": "bu",
+            "label": "What is your blood urea level?",
+            "type": "number",
+            "placeholder": "From your blood-test report",
+            "help": (
+                "Enter the blood urea value shown on your "
+                "recent laboratory report."
+            ),
+        },
 
-            {
-                "name": "al",
-                "label": "Albumin",
-                "type": "number",
-                "min": "0",
-                "max": "5",
-            },
+        {
+            "name": "sc",
+            "label": "What is your serum creatinine level?",
+            "type": "number",
+            "step": "0.1",
+            "placeholder": "From your blood-test report",
+            "help": (
+                "Enter the serum creatinine value from your "
+                "recent laboratory report."
+            ),
+        },
 
-            {
-                "name": "su",
-                "label": "Sugar",
-                "type": "number",
-                "min": "0",
-                "max": "5",
-            },
+        {
+            "name": "hemo",
+            "label": "What is your hemoglobin level?",
+            "type": "number",
+            "step": "0.1",
+            "placeholder": "From your blood-test report",
+            "help": (
+                "Enter the hemoglobin value from your "
+                "recent laboratory report."
+            ),
+        },
 
-            {
-                "name": "rbc",
-                "label": "Red Blood Cells",
-                "type": "select",
-                "options": [
-                    ("normal", "Normal"),
-                    ("abnormal", "Abnormal"),
-                ],
-            },
+        {
+            "name": "htn",
+            "label": "Have you been told that you have high blood pressure?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if a healthcare professional has "
+                "told you that you have hypertension."
+            ),
+        },
 
-            {
-                "name": "pc",
-                "label": "Pus Cell",
-                "type": "select",
-                "options": [
-                    ("normal", "Normal"),
-                    ("abnormal", "Abnormal"),
-                ],
-            },
+        {
+            "name": "dm",
+            "label": "Have you been told that you have diabetes?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if you have been diagnosed with diabetes."
+            ),
+        },
 
-            {
-                "name": "pcc",
-                "label": "Pus Cell Clumps",
-                "type": "select",
-                "options": [
-                    ("present", "Present"),
-                    ("notpresent", "Not Present"),
-                ],
-            },
+        {
+            "name": "appet",
+            "label": "How would you describe your appetite?",
+            "type": "select",
+            "options": [
+                ("good", "Good"),
+                ("poor", "Poor"),
+            ],
+            "help": (
+                "Choose the option that best describes your usual appetite."
+            ),
+        },
 
-            {
-                "name": "ba",
-                "label": "Bacteria",
-                "type": "select",
-                "options": [
-                    ("present", "Present"),
-                    ("notpresent", "Not Present"),
-                ],
-            },
+        {
+            "name": "pe",
+            "label": "Have you noticed swelling in your feet, ankles, or legs?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if you have noticed unusual swelling "
+                "in your lower legs or feet."
+            ),
+        },
 
-            {
-                "name": "bgr",
-                "label": "Blood Glucose Random",
-                "type": "number",
-            },
-
-            {
-                "name": "bu",
-                "label": "Blood Urea",
-                "type": "number",
-            },
-
-            {
-                "name": "sc",
-                "label": "Serum Creatinine",
-                "type": "number",
-                "step": "0.1",
-            },
-
-            {
-                "name": "sod",
-                "label": "Sodium",
-                "type": "number",
-                "step": "0.1",
-            },
-
-            {
-                "name": "pot",
-                "label": "Potassium",
-                "type": "number",
-                "step": "0.1",
-            },
-
-            {
-                "name": "hemo",
-                "label": "Hemoglobin",
-                "type": "number",
-                "step": "0.1",
-            },
-
-            {
-                "name": "pcv",
-                "label": "Packed Cell Volume",
-                "type": "number",
-            },
-
-            {
-                "name": "wbcc",
-                "label": "White Blood Cell Count",
-                "type": "number",
-            },
-
-            {
-                "name": "rbcc",
-                "label": "Red Blood Cell Count",
-                "type": "number",
-                "step": "0.1",
-            },
-
-            {
-                "name": "htn",
-                "label": "Hypertension",
-                "type": "select",
-                "options": [
-                    ("yes", "Yes"),
-                    ("no", "No"),
-                ],
-            },
-
-            {
-                "name": "dm",
-                "label": "Diabetes Mellitus",
-                "type": "select",
-                "options": [
-                    ("yes", "Yes"),
-                    ("no", "No"),
-                ],
-            },
-
-            {
-                "name": "cad",
-                "label": "Coronary Artery Disease",
-                "type": "select",
-                "options": [
-                    ("yes", "Yes"),
-                    ("no", "No"),
-                ],
-            },
-
-            {
-                "name": "appet",
-                "label": "Appetite",
-                "type": "select",
-                "options": [
-                    ("good", "Good"),
-                    ("poor", "Poor"),
-                ],
-            },
-
-            {
-                "name": "pe",
-                "label": "Pedal Edema",
-                "type": "select",
-                "options": [
-                    ("yes", "Yes"),
-                    ("no", "No"),
-                ],
-            },
-
-            {
-                "name": "ane",
-                "label": "Anemia",
-                "type": "select",
-                "options": [
-                    ("yes", "Yes"),
-                    ("no", "No"),
-                ],
-            },
-        ],
-    },
-
+    ],
+},
 
     # ========================================================
     # BREAST CANCER
@@ -535,224 +390,129 @@ DISEASE_FORMS = {
 
     "breast_cancer": {
 
-        "title": "Breast Cancer Risk Assessment",
+    "title": "Breast Health Screening",
 
-        "description": "Enter the tumor measurement values required by the trained classification model.",
+    "description": (
+        "Answer a few simple questions about changes you may have "
+        "noticed. This screening does not diagnose breast cancer."
+    ),
 
-        "fields": [
+    "fields": [
 
-            {
-                "name": "radius1",
-                "label": "Radius",
-                "type": "number",
-                "step": "0.0001",
-            },
+        {
+            "name": "new_lump",
+            "label": "Have you noticed a new lump or thickening in your breast?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if you have noticed a new or unusual "
+                "lump or thickened area."
+            ),
+        },
 
-            {
-                "name": "texture1",
-                "label": "Texture",
-                "type": "number",
-                "step": "0.0001",
-            },
+        {
+            "name": "size_shape_change",
+            "label": "Have you noticed a change in the size or shape of your breast?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if you have noticed a new or unusual "
+                "change in size or shape."
+            ),
+        },
 
-            {
-                "name": "perimeter1",
-                "label": "Perimeter",
-                "type": "number",
-                "step": "0.0001",
-            },
+        {
+            "name": "skin_change",
+            "label": "Have you noticed unusual changes in the skin of your breast?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if you have noticed an unusual change "
+                "in the appearance or texture of the skin."
+            ),
+        },
 
-            {
-                "name": "area1",
-                "label": "Area",
-                "type": "number",
-                "step": "0.0001",
-            },
+        {
+            "name": "nipple_change",
+            "label": "Have you noticed a new change in the appearance or position of a nipple?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if you have noticed a new or unusual "
+                "change in a nipple."
+            ),
+        },
 
-            {
-                "name": "smoothness1",
-                "label": "Smoothness",
-                "type": "number",
-                "step": "0.000001",
-            },
+        {
+            "name": "nipple_discharge",
+            "label": "Have you noticed unusual discharge from a nipple?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if you have noticed unexpected "
+                "nipple discharge."
+            ),
+        },
 
-            {
-                "name": "compactness1",
-                "label": "Compactness",
-                "type": "number",
-                "step": "0.000001",
-            },
+        {
+            "name": "persistent_pain",
+            "label": "Have you had persistent pain or discomfort in one breast?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if the pain or discomfort has been "
+                "persistent or unusual for you."
+            ),
+        },
 
-            {
-                "name": "concavity1",
-                "label": "Concavity",
-                "type": "number",
-                "step": "0.000001",
-            },
+        {
+            "name": "underarm_change",
+            "label": "Have you noticed a new lump or swelling near your armpit?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if you have noticed a new or unusual "
+                "lump or swelling near the armpit."
+            ),
+        },
 
-            {
-                "name": "concave_points1",
-                "label": "Concave Points",
-                "type": "number",
-                "step": "0.000001",
-            },
+        {
+            "name": "doctor_concern",
+            "label": "Has a healthcare professional ever asked you to investigate a breast change?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": (
+                "Choose Yes if a healthcare professional has "
+                "recommended further evaluation."
+            ),
+        },
 
-            {
-                "name": "symmetry1",
-                "label": "Symmetry",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "fractal_dimension1",
-                "label": "Fractal Dimension",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "radius2",
-                "label": "Radius SE",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "texture2",
-                "label": "Texture SE",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "perimeter2",
-                "label": "Perimeter SE",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "area2",
-                "label": "Area SE",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "smoothness2",
-                "label": "Smoothness SE",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "compactness2",
-                "label": "Compactness SE",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "concavity2",
-                "label": "Concavity SE",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "concave_points2",
-                "label": "Concave Points SE",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "symmetry2",
-                "label": "Symmetry SE",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "fractal_dimension2",
-                "label": "Fractal Dimension SE",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "radius3",
-                "label": "Worst Radius",
-                "type": "number",
-                "step": "0.0001",
-            },
-
-            {
-                "name": "texture3",
-                "label": "Worst Texture",
-                "type": "number",
-                "step": "0.0001",
-            },
-
-            {
-                "name": "perimeter3",
-                "label": "Worst Perimeter",
-                "type": "number",
-                "step": "0.0001",
-            },
-
-            {
-                "name": "area3",
-                "label": "Worst Area",
-                "type": "number",
-                "step": "0.0001",
-            },
-
-            {
-                "name": "smoothness3",
-                "label": "Worst Smoothness",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "compactness3",
-                "label": "Worst Compactness",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "concavity3",
-                "label": "Worst Concavity",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "concave_points3",
-                "label": "Worst Concave Points",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "symmetry3",
-                "label": "Worst Symmetry",
-                "type": "number",
-                "step": "0.000001",
-            },
-
-            {
-                "name": "fractal_dimension3",
-                "label": "Worst Fractal Dimension",
-                "type": "number",
-                "step": "0.000001",
-            },
-        ],
-    },
-
+    ],
+},
 
     # ========================================================
     # LIVER
@@ -760,82 +520,115 @@ DISEASE_FORMS = {
 
     "liver_disease": {
 
-        "title": "Liver Disease Risk Assessment",
+    "title": "Liver Health Screening",
 
-        "description": "Enter the laboratory measurements required by the trained model.",
+    "description": (
+        "Answer simple questions about symptoms and health history. "
+        "This screening uses a machine-learning model trained on "
+        "patient health information."
+    ),
 
-        "fields": [
+    "fields": [
 
-            {
-                "name": "age",
-                "label": "Age",
-                "type": "number",
-                "min": "1",
-                "max": "120",
-            },
+        {
+            "name": "Age",
+            "label": "What is your age?",
+            "type": "number",
+            "placeholder": "Enter your age",
+            "min": "1",
+            "max": "120",
+            "help": "Enter your current age.",
+        },
 
-            {
-                "name": "gender",
-                "label": "Gender",
-                "type": "select",
-                "options": [
-                    ("Male", "Male"),
-                    ("Female", "Female"),
-                ],
-            },
+        {
+            "name": "Sex",
+            "label": "What is your sex?",
+            "type": "select",
+            "options": [
+                ("male", "Male"),
+                ("female", "Female"),
+            ],
+            "help": "Select the option that applies to you.",
+        },
 
-            {
-                "name": "tb",
-                "label": "Total Bilirubin",
-                "type": "number",
-                "step": "0.1",
-            },
+        {
+            "name": "Fatigue",
+            "label": "Have you been feeling unusually tired recently?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": "Choose Yes if you have been experiencing unusual tiredness.",
+        },
 
-            {
-                "name": "db",
-                "label": "Direct Bilirubin",
-                "type": "number",
-                "step": "0.1",
-            },
+        {
+            "name": "Malaise",
+            "label": "Have you been feeling generally unwell?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": "Choose Yes if you have recently felt generally unwell.",
+        },
 
-            {
-                "name": "alkphos",
-                "label": "Alkaline Phosphotase",
-                "type": "number",
-            },
+        {
+            "name": "Anorexia",
+            "label": "Has your appetite become unusually poor?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": "Choose Yes if you have noticed a significant loss of appetite.",
+        },
 
-            {
-                "name": "sgpt",
-                "label": "SGPT",
-                "type": "number",
-            },
+        {
+            "name": "Liver Big",
+            "label": "Has a healthcare professional ever told you that your liver is enlarged?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": "Do not try to determine this yourself; use a previous medical assessment.",
+        },
 
-            {
-                "name": "sgot",
-                "label": "SGOT",
-                "type": "number",
-            },
+        {
+            "name": "Spleen Palpable",
+            "label": "Has a healthcare professional ever told you that your spleen is enlarged?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": "Use a previous medical examination if you have one.",
+        },
 
-            {
-                "name": "tp",
-                "label": "Total Protein",
-                "type": "number",
-                "step": "0.1",
-            },
+        {
+            "name": "Ascites",
+            "label": "Have you ever been told that you have unusual fluid buildup or swelling in your abdomen?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": "Choose Yes if this has been identified during a medical assessment.",
+        },
 
-            {
-                "name": "alb",
-                "label": "Albumin",
-                "type": "number",
-                "step": "0.1",
-            },
+        {
+            "name": "Spiders",
+            "label": "Has a healthcare professional ever pointed out unusual spider-like blood vessels on your skin?",
+            "type": "select",
+            "options": [
+                ("yes", "Yes"),
+                ("no", "No"),
+            ],
+            "help": "Use Yes only if this has been identified by a healthcare professional.",
+        },
 
-            {
-                "name": "a/g_ratio",
-                "label": "Albumin / Globulin Ratio",
-                "type": "number",
-                "step": "0.01",
-            },
-        ],
-    },
+    ],
+},
+
 }

@@ -1,0 +1,2 @@
+Disease,Dataset,Mode,Model,Accuracy,Precision,Recall,F1 Score,Features,Training Samples,Testing Samples
+liver,UCI Hepatitis,patient,Logistic Regression,0.9032258064516129,0.8,0.6666666666666666,0.7272727272727273,9,124,31

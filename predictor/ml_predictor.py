@@ -15,11 +15,65 @@ MODEL_PATHS = {
     "kidney_disease": MODEL_DIR / "kidney_disease_model.joblib",
     "breast_cancer": MODEL_DIR / "breast_cancer_model.joblib",
     "liver_disease": MODEL_DIR / "liver_disease_model.joblib",
+    "diabetes_patient": MODEL_DIR / "diabetes_patient_model.joblib",
+    "heart_patient":MODEL_DIR / "heart_disease_patient_model.joblib",
+    "kidney_patient":MODEL_DIR / "kidney_disease_patient_model.joblib",
+    "liver_patient":MODEL_DIR / "liver_patient_model.joblib",
 }
 
+PATIENT_KIDNEY_FEATURES = [
 
+    "age",
+    "bp",
+    "bgr",
+    "bu",
+    "sc",
+    "hemo",
+    "htn",
+    "dm",
+    "appet",
+    "pe",
+
+]
+
+PATIENT_HEART_FEATURES = [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+]
+
+PATIENT_DIABETES_FEATURES = [
+    "age",
+    "gender",
+    "polyuria",
+    "polydipsia",
+    "sudden_weight_loss",
+    "weakness",
+    "polyphagia",
+    "visual_blurring",
+    "obesity",
+]
+PATIENT_LIVER_FEATURES = [
+    "Age",
+    "Sex",
+    "Fatigue",
+    "Malaise",
+    "Anorexia",
+    "Liver Big",
+    "Spleen Palpable",
+    "Ascites",
+    "Spiders",
+]
 # Numeric fields for each model
 NUMERIC_FIELDS = {
+
+    
 
     "heart_disease": {
         "age",
@@ -36,6 +90,8 @@ NUMERIC_FIELDS = {
         "ca",
         "thal",
     },
+
+    
 
     "diabetes": {
         "age",
@@ -104,7 +160,42 @@ NUMERIC_FIELDS = {
     },
 }
 
+def predict_patient_diabetes(data):
 
+    model = joblib.load(
+        MODEL_PATHS["diabetes_patient"]
+    )
+
+    input_data = pd.DataFrame(
+        [data],
+        columns=PATIENT_DIABETES_FEATURES
+    )
+
+    prediction = model.predict(
+        input_data
+    )[0]
+
+    probability = None
+
+    if hasattr(model, "predict_proba"):
+
+        probabilities = model.predict_proba(
+            input_data
+        )[0]
+
+        classes = list(
+            model.classes_
+        )
+
+        if 1 in classes:
+
+            positive_index = classes.index(1)
+
+            probability = float(
+                probabilities[positive_index] * 100
+            )
+
+    return int(prediction), probability
 def load_model(disease):
 
     model_path = MODEL_PATHS.get(disease)
@@ -177,3 +268,114 @@ def predict_disease(disease, data):
         )
 
     return prediction, probability
+
+def predict_patient_heart(data):
+
+    model = joblib.load(
+        MODEL_PATHS["heart_patient"]
+    )
+
+    input_data = pd.DataFrame(
+        [data],
+        columns=PATIENT_HEART_FEATURES
+    )
+
+    prediction = model.predict(
+        input_data
+    )[0]
+
+    probability = None
+
+    if hasattr(model, "predict_proba"):
+
+        probabilities = model.predict_proba(
+            input_data
+        )[0]
+
+        classes = list(
+            model.classes_
+        )
+
+        if 1 in classes:
+
+            positive_index = classes.index(1)
+
+            probability = float(
+                probabilities[positive_index] * 100
+            )
+
+    return int(prediction), probability
+
+def predict_patient_kidney(data):
+
+    model = joblib.load(
+        MODEL_PATHS["kidney_patient"]
+    )
+
+    input_data = pd.DataFrame(
+        [data],
+        columns=PATIENT_KIDNEY_FEATURES
+    )
+
+    prediction = model.predict(
+        input_data
+    )[0]
+
+    probability = None
+
+    if hasattr(model, "predict_proba"):
+
+        probabilities = model.predict_proba(
+            input_data
+        )[0]
+
+        classes = list(
+            model.classes_
+        )
+
+        if 1 in classes:
+
+            positive_index = classes.index(1)
+
+            probability = float(
+                probabilities[positive_index] * 100
+            )
+
+    return int(prediction), probability
+
+def predict_patient_liver(data):
+
+    model = joblib.load(
+        MODEL_PATHS["liver_patient"]
+    )
+
+    input_data = pd.DataFrame(
+        [data],
+        columns=PATIENT_LIVER_FEATURES
+    )
+
+    prediction = model.predict(
+        input_data
+    )[0]
+
+    probability = None
+
+    if hasattr(model, "predict_proba"):
+
+        probabilities = model.predict_proba(
+            input_data
+        )[0]
+
+        classes = list(
+            model.classes_
+        )
+
+        if 1 in classes:
+
+            positive_index = classes.index(1)
+
+            probability = float(
+                probabilities[positive_index] * 100
+            )
+
+    return int(prediction), probability
