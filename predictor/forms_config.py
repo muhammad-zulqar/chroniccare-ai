@@ -37,11 +37,11 @@ DISEASE_FORMS = {
             "label": "What type of chest discomfort do you usually experience?",
             "type": "select",
             "options": [
-                ("0", "Typical chest pain"),
-                ("1", "Atypical chest pain"),
-                ("2", "Non-anginal discomfort"),
-                ("3", "No chest pain"),
-            ],
+    ("1", "Typical chest pain"),
+    ("2", "Atypical chest pain"),
+    ("3", "Non-anginal chest discomfort"),
+    ("4", "No chest pain / asymptomatic"),
+],
             "help": (
                 "Choose the option that best describes "
                 "your usual chest discomfort."
